@@ -99,4 +99,7 @@ echo "${YELLOW}${BOLD}sai2-interfaces successfully built${RESET}"
 sleep 0.5
 
 cd ..
-echo "${GREEN}${BOLD}All repositories successfully built. Setup complete${RESET}"
+echo "${GREEN}${BOLD}All repositories successfully built. Building the main application${RESET}"
+
+mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 && cd ..
+echo "${GREEN}${BOLD}Main application built. Setup complete${RESET}"

@@ -32,6 +32,7 @@
 *.app
 
 # folders
+core/
 build/
 bin/
 log_files/
