@@ -1,0 +1,85 @@
+<simvizConfiguration redisPrefix="opensai">
+	<worldFilePath>${WORLD_FILES_FOLDER}/world_double_panda.urdf</worldFilePath>
+
+	<simParameters>
+		<coeffFriction>0.5</coeffFriction>
+	</simParameters>
+
+	<logger>
+		<logFolderName>log_files/double_panda/simviz</logFolderName>
+		<logFrequency>100</logFrequency>
+		<startWithSimulation>true</startWithSimulation>
+		<timestampInFilename>false</timestampInFilename>
+	</logger>
+
+	<forceSensor>
+		<robotName>Panda</robotName>
+		<linkName>end-effector</linkName>
+		<filterCutoff>5.0</filterCutoff>
+	</forceSensor>
+</simvizConfiguration>
+
+
+<robotControlConfiguration robotName="Panda1" redisPrefix="opensai">
+	<robotModelFile>${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf</robotModelFile>
+	<baseFrame xyz="0 -0.30 0" rpy="0 0 0" />
+	<worldGravity xyz="0 0 -9.81" />
+
+	<logger>
+		<logFolderName>log_files/double_panda/controller</logFolderName>
+		<logFrequency>100</logFrequency>
+		<startWithController>true</startWithController>
+		<timestampInFilename>false</timestampInFilename>
+	</logger>
+
+	<controller name="cartesian_controller">
+		<task name="cartesian_task" type="motion_force_task">
+			<linkName>end-effector</linkName>
+			<velocitySaturation enabled="true"/>
+			<otg type="disabled"/>
+		</task>
+
+		<task name="joint_task" type="joint_task">
+			<otg type="disabled" />
+		</task>
+	</controller>
+
+	<controller name="joint_controller">
+		<task name="joint_task" type="joint_task">
+			<velocitySaturation enabled="true"/>
+			<otg type="disabled"/>
+		</task>
+	</controller>
+</robotControlConfiguration>
+
+<robotControlConfiguration robotName="Panda2" redisPrefix="opensai">
+	<robotModelFile>${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf</robotModelFile>
+	<baseFrame xyz="0 0.30 0" rpy="0 0 0" />
+	<worldGravity xyz="0 0 -9.81" />
+
+	<logger>
+		<logFolderName>log_files/double_panda/controller</logFolderName>
+		<logFrequency>100</logFrequency>
+		<startWithController>true</startWithController>
+		<timestampInFilename>false</timestampInFilename>
+	</logger>
+
+	<controller name="cartesian_controller">
+		<task name="cartesian_task" type="motion_force_task">
+			<linkName>end-effector</linkName>
+			<velocitySaturation enabled="true"/>
+			<otg type="disabled"/>
+		</task>
+
+		<task name="joint_task" type="joint_task">
+			<otg type="disabled" />
+		</task>
+	</controller>
+
+	<controller name="joint_controller">
+		<task name="joint_task" type="joint_task">
+			<velocitySaturation enabled="true"/>
+			<otg type="disabled"/>
+		</task>
+	</controller>
+</robotControlConfiguration>
