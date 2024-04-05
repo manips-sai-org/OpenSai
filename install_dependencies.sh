@@ -13,7 +13,7 @@ if [ "$os_name" = "Linux" ]; then
 elif [ "$os_name" = "Darwin" ]; then
     echo "Installing dependencies for macOS."
 	brew update
-	brew install cmake git eigen tinyxml2 googletest glfw3 glew redis hiredis jsoncpp tmux
+	brew install cmake git eigen tinyxml2 googletest glfw3 glew redis hiredis jsoncpp tmux openal-soft
 
 else
     echo "ERROR: Unsupported OS. Only Linux and macOS are supported."
