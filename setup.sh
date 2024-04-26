@@ -46,10 +46,10 @@ echo "${YELLOW}${BOLD}All repositories successfully cloned (or cloning was not n
 sleep 0.5
 
 # build all the repositories
-cd chai3d
+cd sai2-common
 git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 && cd ../..
-echo "${YELLOW}${BOLD}chai3d successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai2-common successfully built${RESET}"
 sleep 0.5
 
 cd sai2-urdfreader
@@ -66,16 +66,16 @@ mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 &&
 echo "${YELLOW}${BOLD}sai2-model successfully built${RESET}"
 sleep 0.5
 
+cd chai3d
+git checkout master && git pull
+mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 && cd ../..
+echo "${YELLOW}${BOLD}chai3d successfully built${RESET}"
+sleep 0.5
+
 cd sai2-graphics
 git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 && cd ../..
 echo "${YELLOW}${BOLD}sai2-graphics successfully built${RESET}"
-sleep 0.5
-
-cd sai2-common
-git checkout master && git pull
-mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j8 && cd ../..
-echo "${YELLOW}${BOLD}sai2-common successfully built${RESET}"
 sleep 0.5
 
 cd sai2-simulation
