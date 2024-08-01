@@ -6,7 +6,7 @@ if [ "$os_name" = "Linux" ]; then
     echo "Installing dependencies for linux."
 	sudo apt-get update
 
-	sudo apt-get install build-essential cmake git libeigen3-dev libtinyxml2-dev libgtest-dev \
+	sudo apt-get install build-essential cmake git libeigen3-dev libtinyxml2-dev libgtest-dev python3-pip \
 		libasound2-dev libusb-1.0.0-dev freeglut3-dev xorg-dev libglew-dev libglfw3-dev \
 		libopenal-dev redis libhiredis-dev libjsoncpp-dev tmux
 

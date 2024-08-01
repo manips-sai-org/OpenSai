@@ -4,9 +4,16 @@ if [ ! "$BASH_VERSION" ] ; then
 fi
 
 # Set the config file from the first command-line argument
-config_file="$1"
+if [ "$#" -eq 0 ]; then
+	config_file="single_panda.xml"
+elif [ "$#" -eq 1 ]; then
+	config_file="$1"
+else
+	echo "Usage: $0 [config_file_name (optional)]"
+	exit 1
+fi
 
-# launch redis server is not launched
+# launch redis server if not launched
 if [ -z "$(pgrep redis-server)" ]; then
 	redis-server &
 	REDIS_PID=$!

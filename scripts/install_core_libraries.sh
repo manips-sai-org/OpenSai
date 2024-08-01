@@ -47,19 +47,16 @@ sleep 0.5
 
 # build all the repositories
 cd sai2-common
-git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 echo "${YELLOW}${BOLD}sai2-common successfully built${RESET}"
 sleep 0.5
 
 cd sai2-urdfreader
-git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 echo "${YELLOW}${BOLD}sai2-urdfreader successfully built${RESET}"
 sleep 0.5
 
 cd sai2-model
-git checkout master && git pull
 cd rbdl
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
@@ -67,25 +64,21 @@ echo "${YELLOW}${BOLD}sai2-model successfully built${RESET}"
 sleep 0.5
 
 cd chai3d
-git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 echo "${YELLOW}${BOLD}chai3d successfully built${RESET}"
 sleep 0.5
 
 cd sai2-graphics
-git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 echo "${YELLOW}${BOLD}sai2-graphics successfully built${RESET}"
 sleep 0.5
 
 cd sai2-simulation
-git checkout master && git pull
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 echo "${YELLOW}${BOLD}sai2-simulation successfully built${RESET}"
 sleep 0.5
 
 cd sai2-primitives
-git checkout master && git pull
 cd ruckig
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
@@ -93,13 +86,11 @@ echo "${YELLOW}${BOLD}sai2-primitives successfully built${RESET}"
 sleep 0.5
 
 cd sai2-interfaces
-git checkout master && git pull
-mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
+mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..
 echo "${YELLOW}${BOLD}sai2-interfaces successfully built${RESET}"
+pip3 install -r interface/requirements.txt
+echo "${YELLOW}${BOLD}sai2-interfaces python requirements installed${RESET}"
 sleep 0.5
 
 cd ..
-echo "${GREEN}${BOLD}All repositories successfully built. Building the main application${RESET}"
-
-mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..
-echo "${GREEN}${BOLD}Main application built. Setup complete${RESET}"
+echo "${GREEN}${BOLD}All repositories successfully built. The main Opensai application can be built${RESET}"
