@@ -49,3 +49,6 @@ if [ -d "core" ]; then
 fi
 
 rm -r ~/.cmake/packages/SAI2-* && rm -r ~/.cmake/packages/CHAI3D
+
+rm -r build
+rm -r bin

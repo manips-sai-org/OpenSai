@@ -32,7 +32,10 @@ sh scripts/update_core_libraries.sh
 Don't forget to re install them afterwards, and to re build the main application.
 
 ## Uninstall instructions
-The core libraries are installed for the current OS session user, and the main application is not installed globally. If you want to remove the core libraries installation (to use different versions of those in other applications for example), call the scripts/uninstall_core_libraries.sh script. Be warned that it removes all installation of the sai2 core libraries for the current user, not only this one.
+The core libraries are installed for the current OS session user, and the main application is not installed globally. The uninstall script will remove the build and cmake output for all core libraries and the main application:
+```
+sh scripts/uninstall.sh
+```
 
 
 
