@@ -35,7 +35,7 @@ function ctrl_c() {
 sleep 1
 
 # Launch interfaces server using tmux
-tmux new-session -d -s interfaces_server "python3 bin/interface/server.py config_folder/main_configs/webui_generated_file/webui.html"
+tmux new-session -d -s interfaces_server "python3 bin/ui/server.py config_folder/main_configs/webui_generated_file/webui.html"
 
 # Wait for OpenSai main program to quit and stop redis
 wait $OPENSAI_MAIN_PID

@@ -73,4 +73,4 @@ add_executable(OpenSai_main src/main.cpp)
 target_link_libraries(OpenSai_main ${OPENSAI_LIBRARIES})
 
 file(CREATE_LINK ${SAI2-INTERFACES_UI_DIR}
-     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/interface SYMBOLIC)
+     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ui SYMBOLIC)
