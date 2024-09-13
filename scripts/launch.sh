@@ -4,9 +4,16 @@ if [ ! "$BASH_VERSION" ] ; then
 fi
 
 # Set the config file from the first command-line argument
-config_file="$1"
+if [ "$#" -eq 0 ]; then
+	config_file="single_panda.xml"
+elif [ "$#" -eq 1 ]; then
+	config_file="$1"
+else
+	echo "Usage: $0 [config_file_name (optional)]"
+	exit 1
+fi
 
-# launch redis server is not launched
+# launch redis server if not launched
 if [ -z "$(pgrep redis-server)" ]; then
 	redis-server &
 	REDIS_PID=$!
@@ -28,7 +35,7 @@ function ctrl_c() {
 sleep 1
 
 # Launch interfaces server using tmux
-tmux new-session -d -s interfaces_server "python3 bin/interface/server.py config_folder/main_configs/webui_generated_file/webui.html"
+tmux new-session -d -s interfaces_server "python3 bin/ui/server.py config_folder/main_configs/webui_generated_file/webui.html"
 
 # Wait for OpenSai main program to quit and stop redis
 wait $OPENSAI_MAIN_PID

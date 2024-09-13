@@ -1,31 +1,41 @@
 # OpenSai
 
 ## Install Instructions
-Start by installing the dependencies (not tested yet):
+Start by installing the dependencies:
 ```
-sh install_dependencies.sh
-```
-
-Then call the setup script that will create a core folder and download and compile all the core sai2 libraries there, and finally compile the OpenSai_main application (which will be located in the bin folder)
-```
-sh setup.sh
+sh scripts/install_dependencies.sh
 ```
 
-If you want to use the UI interface, you will need to install the interface dependencies as well
+Then call the setup script that will create a core folder and download and compile all the core sai2 libraries there. It will also install all the python requirements for the interface.
 ```
-pip install -r core/sai2-interfaces/interface/requirements.txt
+sh scripts/install_core_libraries.sh
+```
+
+Finally, build the OpenSai_main application (which will be located in the bin folder)
+```
+sh scripts/build_Opensai.sh
 ```
 
 ## Usage Instructions
-You can now launch opensai with the provided script (you can provide as an optional argument a config file name, the file must be in config_folder/main_configs)
+You can now launch opensai with the provided script (you can provide as an optional argument a config file name, the file must be in config_folder/main_configs). By default, the application will launch with the single_panda.xml config file if no argument is provided
 ```
-sh launch.sh
+sh scripts/launch.sh
 ```
-And if you want to use the ui, you can open a browser and navigate to localhost:8000 (give it a few seconds for the web server to start)
+To use the ui, open a browser and navigate to localhost:8000 (give it a few seconds for the web server to start)
 From the UI, you can load a config file from the config_folder/main_configs folder and interact with the robot controllers
 
+## Updating the core libraries
+To pull the latest updates from the core libraries, you can use the provided script that will checkout the master branch of all core libraries and pull the latest changes.
+```
+sh scripts/update_core_libraries.sh
+```
+Don't forget to re install them afterwards, and to re build the main application.
+
 ## Uninstall instructions
-The core libraries are installed for the current OS user, and the main application is not installed globally. If you want to remove the core libraries install (to use different versions of those in other applications for example), call the uninstall_core.sh script. Be warned that it removes all installation of the sai2 core libraries, not only this one.
+The core libraries are installed for the current OS session user, and the main application is not installed globally. The uninstall script will remove the build and cmake output for all core libraries and the main application:
+```
+sh scripts/uninstall.sh
+```
 
 
 
