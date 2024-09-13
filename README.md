@@ -27,7 +27,7 @@ From the UI, you can load a config file from the `config_folder/main_configs` fo
 You can make new applications by making new config files and placing them in the `config_folder/main_configs` folder.
 
 ## Documentation
-OpenSai main application is an instance of the MainRedisInterface application from the [sai2-interfaces](https://github.com/manips-sai-org/sai2-interfaces) library. You can interact with the controller and simulation from the webui on the browser. For an overview of the ui and how to use it, see [this page]([docs/ui_overview.md](https://github.com/manips-sai-org/sai2-interfaces/blob/master/docs/ui_overview.md)). For details on the config files, how to use them and how to make your own for your application, see [here]([docs/config_files_details.md](https://github.com/manips-sai-org/sai2-interfaces/blob/master/docs/config_files_details.md)).
+OpenSai main application is an instance of the MainRedisInterface application from the [sai2-interfaces](https://github.com/manips-sai-org/sai2-interfaces) library. You can interact with the controller and simulation from the webui on the browser. For an overview of the ui and how to use it, see [this page](https://github.com/manips-sai-org/sai2-interfaces/blob/master/docs/ui_overview.md). For details on the config files, how to use them and how to make your own for your application, see [here](https://github.com/manips-sai-org/sai2-interfaces/blob/master/docs/config_files_details.md).
 
 ## Updating the core libraries
 To pull the latest updates from the core libraries, you can use the provided script that will checkout the master branch of all core libraries and pull the latest changes.
