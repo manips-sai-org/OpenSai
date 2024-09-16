@@ -88,7 +88,7 @@ sleep 0.5
 cd sai2-interfaces
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..
 echo "${YELLOW}${BOLD}sai2-interfaces successfully built${RESET}"
-pip3 install -r interface/requirements.txt
+pip3 install -r ui/requirements.txt
 echo "${YELLOW}${BOLD}sai2-interfaces python requirements installed${RESET}"
 sleep 0.5
 

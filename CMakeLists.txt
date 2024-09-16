@@ -72,5 +72,8 @@ ${SAI2-COMMON_LIBRARIES}
 add_executable(OpenSai_main src/main.cpp)
 target_link_libraries(OpenSai_main ${OPENSAI_LIBRARIES})
 
+set( CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/config_folder )
+add_definitions(-DCONFIG_FOLDER_PATH="${CONFIG_FOLDER_PATH}")
+
 file(CREATE_LINK ${SAI2-INTERFACES_UI_DIR}
      ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ui SYMBOLIC)

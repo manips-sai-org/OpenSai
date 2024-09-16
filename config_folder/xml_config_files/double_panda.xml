@@ -1,0 +1,76 @@
+<simvizConfiguration redisPrefix="opensai"
+	worldFilePath="${WORLD_FILES_FOLDER}/world_double_panda.urdf">
+
+	<simParameters frictionCoefficient="0.5" />
+
+	<logger logFolderName="log_files/double_panda/simviz"
+		enabledAtStartup="true"
+		addTimestampToFilename="false" />
+
+	<forceSensor robotOrObjectName="Panda"
+		linkName="end-effector"
+		filterCutoff="5.0" />
+</simvizConfiguration>
+
+
+<robotControlConfiguration robotName="Panda1"
+	redisPrefix="opensai"
+	robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf">
+	<baseFrame xyz="0 -0.30 0"
+		rpy="0 0 0" />
+	<worldGravity xyz="0 0 -9.81" />
+
+	<logger logFolderName="log_files/double_panda/controller"
+		enabledAtStartup="true"
+		addTimestampToFilename="false" />
+
+	<controller name="cartesian_controller">
+		<motionForceTask name="cartesian_task"
+			linkName="end-effector">
+			<velocitySaturation enabled="true" />
+			<otg type="disabled" />
+		</motionForceTask>
+
+		<jointTask name="joint_task">
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+
+	<controller name="joint_controller">
+		<jointTask name="joint_task">
+			<velocitySaturation enabled="true" />
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+</robotControlConfiguration>
+
+<robotControlConfiguration robotName="Panda2"
+	redisPrefix="opensai"
+	robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf">
+	<baseFrame xyz="0 0.30 0"
+		rpy="0 0 0" />
+	<worldGravity xyz="0 0 -9.81" />
+
+	<logger logFolderName="log_files/double_panda/controller"
+		enabledAtStartup="true"
+		addTimestampToFilename="false" />
+
+	<controller name="cartesian_controller">
+		<motionForceTask name="cartesian_task"
+			linkName="end-effector">
+			<velocitySaturation enabled="true" />
+			<otg type="disabled" />
+		</motionForceTask>
+
+		<jointTask name="joint_task">
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+
+	<controller name="joint_controller">
+		<jointTask name="joint_task">
+			<velocitySaturation enabled="true" />
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+</robotControlConfiguration>
