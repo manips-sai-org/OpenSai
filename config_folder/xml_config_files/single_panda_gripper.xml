@@ -1,0 +1,56 @@
+<simvizConfiguration redisPrefix="opensai"
+	worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda_gripper.urdf">
+
+	<simParameters frictionCoefficient="1.5"
+		collisionRestitutionCoefficient="0.1" />
+
+	<logger logFolderName="log_files/single_panda_gripper/simviz" />
+
+	<forceSensor robotOrObjectName="Panda"
+		linkName="end-effector"
+		filterCutoff="5.0" />
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="Panda"
+	redisPrefix="opensai"
+	robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_gripper.urdf">
+
+	<logger logFolderName="log_files/single_panda_gripper/controller" />
+
+	<controller name="cartesian_controller">
+		<jointTask name="gripper_fingers"
+			bieThreshold="0.0"
+			useDynamicDecoupling="false">
+			<controlledJointNames>
+				finger_joint1
+				finger_joint2
+			</controlledJointNames>
+			<gains kp="400.0"
+				kv="15.0"
+				ki="0.0" />
+			<otg type="acceleration"
+				maxVelocity="0.04"
+				maxAcceleration="1.00" />
+		</jointTask>
+
+		<motionForceTask name="cartesian_task"
+			linkName="end-effector"
+			bieThreshold="0.0">
+			<velocitySaturation enabled="false" />
+			<otg type="acceleration" />
+		</motionForceTask>
+
+		<jointTask name="joint_task"
+			bieThreshold="0.0">
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+
+	<controller name="joint_controller">
+		<jointTask name="joint_task">
+			<velocitySaturation enabled="true" />
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+
+</robotControlConfiguration>

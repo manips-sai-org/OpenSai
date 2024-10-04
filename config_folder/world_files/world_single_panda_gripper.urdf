@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+
+<world name="demo_world" gravity="0.0 0.0 -9.81">
+
+	<robot name="Panda">
+		<model dir="${SAI2_MODEL_URDF_FOLDER}/panda" path="panda_arm_gripper.urdf" name="panda" />
+	</robot>
+
+	<static_object name="Floor">
+		<origin xyz="0.0 0.0 -0.05" rpy="0 0 0" />
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+			<material name="material_floor">
+				<color rgba="0.2 0.2 0.2 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+		</collision>
+	</static_object>
+
+	<static_object name="Table1">
+		<origin xyz="0.45 0.4 0.3" rpy="0 0 0" />
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.2 0.4 0.05" />
+			</geometry>
+			<material name="material_table">
+				<color rgba="0.0 0.38 0.38 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.2 0.4 0.05" />
+			</geometry>
+		</collision>
+	</static_object>
+
+	<static_object name="Table2">
+		<origin xyz="0.4 -0.3 0.2" rpy="0 0 0" />
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<cylinder radius="0.15" length="0.03" />
+			</geometry>
+			<material name="material_table">
+				<color rgba="0.0 0.38 0.38 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<cylinder radius="0.15" length="0.03" />
+			</geometry>
+		</collision>
+	</static_object>
+
+	<dynamic_object name="Box">
+		<origin xyz="0.45 0.35 0.5" rpy="0 0 0" />
+		<inertial>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<mass value="0.5" />
+			<inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+		</inertial>
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.05 0.05 0.05" />
+			</geometry>
+			<material name="material_box">
+				<color rgba="0.859 0.522 0.0 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.05 0.05 0.05" />
+			</geometry>
+		</collision>
+	</dynamic_object>
+
+	<light name="light1" type="directional">
+		<position xyz="2.0 -2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<light name="light2" type="directional">
+		<position xyz="2.0 2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<camera name="camera_fixed">
+		<position xyz="2.0 0.0 1.0" />
+		<vertical xyz="0.0 0.0 1.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</camera>
+
+</world>
