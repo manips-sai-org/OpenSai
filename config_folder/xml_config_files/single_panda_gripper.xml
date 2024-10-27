@@ -1,5 +1,6 @@
-<simvizConfiguration redisPrefix="opensai"
-	worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda_gripper.urdf">
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda_gripper.urdf">
 
 	<simParameters frictionCoefficient="1.5"
 		collisionRestitutionCoefficient="0.1" />
@@ -12,7 +13,6 @@
 </simvizConfiguration>
 
 <robotControlConfiguration robotName="Panda"
-	redisPrefix="opensai"
 	robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_gripper.urdf">
 
 	<logger logFolderName="log_files/single_panda_gripper/controller" />
