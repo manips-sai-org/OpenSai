@@ -15,7 +15,7 @@
 <robotControlConfiguration robotName="Panda"
 	robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_gripper.urdf">
 
-	<logger logFolderName="log_files/single_panda_gripper/controller" />
+	<logger logFolderName="log_files/single_panda_gripper/controllers" />
 
 	<controller name="cartesian_controller">
 		<jointTask name="gripper_fingers"

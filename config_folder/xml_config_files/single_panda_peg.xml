@@ -20,7 +20,7 @@
 		rpy="0 0 0" />
 	<worldGravity xyz="0 0 -9.81" />
 
-	<logger logFolderName="log_files/single_panda_peg/controller"
+	<logger logFolderName="log_files/single_panda_peg/controllers"
 		enabledAtStartup="true"
 		addTimestampToFilename="false" />
 

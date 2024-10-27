@@ -20,7 +20,7 @@
 		rpy="0 0 0" />
 	<worldGravity xyz="0 0 -9.81" />
 
-	<logger logFolderName="log_files/double_panda/controller"
+	<logger logFolderName="log_files/double_panda/controllers"
 		enabledAtStartup="true"
 		addTimestampToFilename="false" />
 
