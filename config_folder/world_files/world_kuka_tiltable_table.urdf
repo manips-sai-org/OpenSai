@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<world name="demo_world"
+	gravity="0.0 0.0 -9.81">
+
+	<robot name="Kuka">
+		<model dir="${ROBOT_FILES_FOLDER}" path="iiwa7_plate.urdf" name="kuka_iiwa" />
+	</robot>
+
+	<robot name="Table">
+		<origin xyz="0.6 0.0 0.4" rpy="0 0 0" />
+		<model dir="${ROBOT_FILES_FOLDER}" path="tiltable_table.urdf" name="tiltable_table" />
+	</robot>
+
+	<static_object name="Floor">
+		<origin xyz="0.0 0.0 -0.05" rpy="0 0 0" />
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+			<material name="material_floor">
+				<color rgba="0.2 0.2 0.2 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+		</collision>
+	</static_object>
+
+	<light name="light1" type="directional">
+		<position xyz="2.0 -2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<light name="light2" type="directional">
+		<position xyz="2.0 2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<camera name="camera_fixed">
+		<position xyz=" 1.39589   1.0574 0.995843" />
+		<lookat xyz="0.791416 0.319597 0.695413" />
+		<vertical xyz="-0.177383 -0.243002  0.953669" />
+	</camera>
+
+</world>

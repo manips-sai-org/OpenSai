@@ -16,14 +16,17 @@ class State(Enum):
 
 @dataclass
 class RedisKeys:
-  cartesian_task_goal_position: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::goal_position"
-  cartesian_task_goal_orientation: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::goal_orientation"
-  cartesian_task_current_position: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::current_position"
-  cartesian_task_current_orientation: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::current_orientation"
-  active_controller: str = "opensai::controller::Panda::active_controller_name"
+  cartesian_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_position"
+  cartesian_task_goal_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_orientation"
+  cartesian_task_current_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_position"
+  cartesian_task_current_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_orientation"
+  active_controller: str = "opensai::controllers::Panda::active_controller_name"
+  config_file_name: str = "::sai2-interfaces-webui::config_file_name"
 
 redis_keys = RedisKeys()
 
+config_file_for_this_example = "single_panda.xml"
+controller_to_use = "cartesian_controller"
 
 rot_y_15_deg = np.array([[math.cos(15.0 * DEG_TO_RAD), 0, -math.sin(15.0 * DEG_TO_RAD)],
                          [0, 1, 0],
@@ -46,6 +49,17 @@ goal_ori = init_goal_ori
 # redis client
 redis_client = redis.Redis()
 
+# check that the config file is correct
+config_file_name = redis_client.get(redis_keys.config_file_name).decode("utf-8")
+if config_file_name != config_file_for_this_example:
+    print("This example is meant to be used with the config file: ", config_file_for_this_example)
+    exit(0)
+
+# set the correct active controller
+while redis_client.get(redis_keys.active_controller).decode("utf-8") != controller_to_use:
+	redis_client.set(redis_keys.active_controller, controller_to_use)
+
+# set the initial goal position and orientation
 redis_client.set(redis_keys.cartesian_task_goal_position, json.dumps(init_goal_pos.tolist()))
 redis_client.set(redis_keys.cartesian_task_goal_orientation, json.dumps(init_goal_ori.tolist()))
 
@@ -61,11 +75,7 @@ init_time = time.perf_counter_ns() * 1e-9
 try:
   while True:
     loop_time += dt
-    # check the active controller is the cartesian one
-    active_controller = redis_client.get(redis_keys.active_controller).decode("utf-8")
-    if active_controller != "cartesian_controller":
-        print("Exiting, active controller is not cartesian_controller")
-        exit(0)
+    time.sleep(max(0, loop_time - (time.perf_counter_ns() * 1e-9 - init_time)))
     
     # read robot state
     current_position = np.array(json.loads(redis_client.get(redis_keys.cartesian_task_current_position)))

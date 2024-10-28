@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="tiltable_table">
+
+    <link name="virtual_0">
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+    </link>
+
+    <link name="virtual_1">
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+    </link>
+
+    <link name="table_top">
+        <inertial>
+            <mass value="10" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+		<visual>
+			<geometry>
+				<cylinder radius="0.25" length="0.03" />
+			</geometry>
+			<material name="material_table">
+				<color rgba="0.0 0.38 0.38 1.0" />
+            </material>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.25" length="0.03" />
+			</geometry>
+		</collision>
+    </link>
+
+    <joint name="j0" type="revolute">
+        <parent link="virtual_0" />
+        <child link="virtual_1" />
+        <axis xyz="1 0 0" />
+        <limit lower="-2.967" upper="2.967" effort="176" velocity="1.7104" />
+    </joint>
+
+    <joint name="j1" type="revolute">
+        <parent link="virtual_1" />
+        <child link="table_top" />
+        <axis xyz="0 1 0" />
+        <limit lower="-2.967" upper="2.967" effort="176" velocity="1.7104" />
+    </joint>
+
+</robot>
