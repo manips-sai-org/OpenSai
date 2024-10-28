@@ -20,6 +20,10 @@
 	<controller name="eef_control">
 		<motionForceTask name="eef_task"
 			linkName="end-effector">
+
+			<compliantFrame xyz="0 0 0.01"
+				rpy="0 0 0" />
+
 			<forceGains kp="0.7"
 				ki="4.5"
 				kv="1.5" />
@@ -48,7 +52,7 @@
 				kv="10.0"
 				ki="0.0" />
 			<otg type="jerk"
-				maxVelocity="0.2"
+				maxVelocity="0.15"
 				maxAcceleration="3.14"
 				maxJerk="15.0" />
 		</jointTask>
