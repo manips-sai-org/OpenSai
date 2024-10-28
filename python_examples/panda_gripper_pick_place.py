@@ -15,24 +15,37 @@ class State(Enum):
   PLACE = auto()
   FINISH = auto()
 
-
 @dataclass
 class RedisKeys:
-  cartesian_task_goal_position: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::goal_position"
-  cartesian_task_goal_orientation: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::goal_orientation"
-  cartesian_task_current_position: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::current_position"
-  cartesian_task_current_orientation: str = "opensai::controller::Panda::cartesian_controller::cartesian_task::current_orientation"
-  gripper_task_goal_position: str = "opensai::controller::Panda::cartesian_controller::gripper_fingers::goal_position"
-  object_current_position: str = "opensai::simviz::obj_pose::Box"
-  active_controller: str = "opensai::controller::Panda::active_controller_name"
+  cartesian_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_position"
+  cartesian_task_goal_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_orientation"
+  cartesian_task_current_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_position"
+  cartesian_task_current_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_orientation"
+  gripper_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::gripper_fingers::goal_position"
+  object_current_position: str = "opensai::sensors::Box::object_pose"
+  active_controller: str = "opensai::controllers::Panda::active_controller_name"
+  config_file_name: str = "::sai2-interfaces-webui::config_file_name"
 
 redis_keys = RedisKeys()
+
+config_file_for_this_example = "single_panda_gripper.xml"
+controller_to_use = "cartesian_controller"
 
 place_goal_position_left = np.array([0.4, -0.3, 0.225])
 place_goal_position_right = np.array([0.45, 0.35, 0.325])
 
 # redis client
 redis_client = redis.Redis()
+
+# check that the config file is correct
+config_file_name = redis_client.get(redis_keys.config_file_name).decode("utf-8")
+if config_file_name != config_file_for_this_example:
+  print("This example is meant to be used with the config file: ", config_file_for_this_example)
+  exit(0)
+
+# set the correct active controller
+while redis_client.get(redis_keys.active_controller).decode("utf-8") != controller_to_use:
+	redis_client.set(redis_keys.active_controller, controller_to_use)
 
 init_position = np.array(json.loads(redis_client.get(redis_keys.cartesian_task_current_position)))
 init_orientation = np.array(json.loads(redis_client.get(redis_keys.cartesian_task_current_orientation)))
@@ -66,6 +79,8 @@ init_time = time.perf_counter_ns() * 1e-9
 try:
   while True:
     loop_time += dt
+    time.sleep(max(0, loop_time - (time.perf_counter_ns() * 1e-9 - init_time)))
+    
     # check the active controller is the cartesian one
     active_controller = redis_client.get(redis_keys.active_controller).decode("utf-8")
     if active_controller != "cartesian_controller":

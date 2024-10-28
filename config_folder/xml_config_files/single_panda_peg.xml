@@ -1,5 +1,6 @@
-<simvizConfiguration redisPrefix="opensai"
-	worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda_peg.urdf">
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda_peg.urdf">
 
 	<simParameters frictionCoefficient="0.5" />
 
@@ -14,13 +15,12 @@
 
 
 <robotControlConfiguration robotName="Panda"
-	redisPrefix="opensai"
 	robotModelFile="${ROBOT_FILES_FOLDER}/panda_arm_peg.urdf">
 	<baseFrame xyz="0 0 0"
 		rpy="0 0 0" />
 	<worldGravity xyz="0 0 -9.81" />
 
-	<logger logFolderName="log_files/single_panda_peg/controller"
+	<logger logFolderName="log_files/single_panda_peg/controllers"
 		enabledAtStartup="true"
 		addTimestampToFilename="false" />
 
