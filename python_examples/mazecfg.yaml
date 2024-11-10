@@ -1,0 +1,34 @@
+genfile: "../config_folder/world_files/world_mobile_base.urdf"
+
+maze: [["x", "", "x", "x", "x", "x", "x", "x",  "x", "x", "x"],
+      ["x", "", "x", "", "", "", "", "",  "", "", "x"],
+      ["x", "", "x", "", "x", "x", "x", "x",  "x", "", "x"],
+      ["x", "", "x", "", "x", "x", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "", "", "x", "", "x", "",  "x", "", "x"],
+      ["x", "", "x", "x", "x", "", "", "", "x", "", "x"],
+      ["x", "", "x", "", "", "", "", "",  "x", "", "x"],
+      ["x", "x", "x", "x", "x", "x", "x", "x",  "x", "d", "x"]]
+
+robotOrigin: [-1,-1, 0] # enter float coordinates of robots center
+dogOrigin: [0.9, -0.9, 0.08] # enter float coordinates of robots center
+
+mazePos: [0, 0, 0.4] # enter centered coordinates
+mazeScale: [0.04, 0.04, 0.04] # enter the dx, dy, and dz values which are used to set size of maze
+
+tablePos: [0, 0, 0] # enter centered coordinates
+tableDims: [0.3, 0.3] # enter radius and height
+border: 0.1
+topthick: 0.1
+
+startPos: [-0.30, -0.16, 0.6] # enter start coordinates
+
+
+

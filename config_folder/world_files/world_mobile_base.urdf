@@ -1,0 +1,422 @@
+<?xml version="1.0" ?>
+
+<world name="test-world" gravity="0.0 0.0 -9.81">
+
+    <robot name="Panda">
+        <origin xyz="-1 -1 0" rpy="0 0 0" />
+        <model dir="${ROBOT_FILES_FOLDER}" path="mobile_base.urdf" name="panda" />
+    </robot>
+
+    <robot name="Dog">
+        <origin xyz="0.9 -0.9 0.08" rpy="0 0 0" />
+        <model dir="${ROBOT_FILES_FOLDER}" path="dog.urdf" name="dog" />
+    </robot>
+
+    <static_object name="table">
+        <origin xyz="0 0 0.15" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.3" length="0.3"/>
+            </geometry>
+            <material name="material_green">
+                <color rgba="1.0 0.7 0.4 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.3" length="0.3"/>
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="table-top">
+        <origin xyz="0 0 0.35" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.4" length="0.1"/>
+            </geometry>
+            <material name="material_green">
+                <color rgba="1.0 0.7 0.4 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.4" length="0.1"/>
+            </geometry>
+        </collision>
+    </static_object>
+
+
+
+    <static_object name="floor">
+        <origin xyz="0 0 -0.05" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="5 5 0.1" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.2 0.2 0.2 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="5 5 0.1" />
+            </geometry>
+        </collision>
+    </static_object>
+
+
+
+    <static_object name="mazewall-0">
+        <origin xyz="0.0 -0.2 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.64 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.64 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-1">
+        <origin xyz="-0.3 0.03999999999999998 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.36 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.36 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-2">
+        <origin xyz="-0.10000000000000003 -0.12000000000000001 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.36 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.36 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-3">
+        <origin xyz="0.019999999999999962 0.19999999999999998 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.6 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.6 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-4">
+        <origin xyz="-0.22 0.04000000000000001 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.2 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.2 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-5">
+        <origin xyz="-0.18000000000000002 0.0 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.12 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.12 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-6">
+        <origin xyz="0.06 0.12000000000000001 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.52 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.52 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-7">
+        <origin xyz="0.04000000000000001 -0.039999999999999994 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.4 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.4 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-8">
+        <origin xyz="0.01999999999999999 0.04 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.36 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.36 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-9">
+        <origin xyz="0.22 -0.1 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.08 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.08 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-10">
+        <origin xyz="0.27999999999999997 -0.12000000000000001 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.08 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.08 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-11">
+        <origin xyz="0.30000000000000004 -0.16 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.04 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.04 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+    <static_object name="mazewall-12">
+        <origin xyz="0.30000000000000004 0.0 0.42000000000000004" rpy="0 0 0" />
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <mass value="1" />
+            <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.2 0.04" />
+            </geometry>
+            <material name="material_green">
+                <color rgba="0.1 0.5 0.1 1.0" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.04 0.2 0.04" />
+            </geometry>
+        </collision>
+    </static_object>
+
+
+
+    <light name="light1" type="directional">
+        <position xyz="2.0 -2.0 2.0" />
+        <lookat xyz="0.0 0.0 0.5" />
+    </light>
+
+    <light name="light2" type="directional">
+        <position xyz="2.0 2.0 2.0" />
+        <lookat xyz="0.0 0.0 0.5" />
+    </light>
+
+    <camera name="camera_fixed">
+        <position xyz="2.0 0.0 1.0" />
+        <vertical xyz="0.0 0.0 1.0" />
+        <lookat xyz="0.0 0.0 0.5" />
+    </camera>
+
+</world>
+
