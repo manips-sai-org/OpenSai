@@ -18,6 +18,14 @@
 	<logger logFolderName="log_files/single_panda_gripper/controllers" />
 
 	<controller name="cartesian_controller">
+
+		<motionForceTask name="cartesian_task"
+			linkName="end-effector"
+			bieThreshold="0.0">
+			<velocitySaturation enabled="false" />
+			<otg type="acceleration" />
+		</motionForceTask>
+
 		<jointTask name="gripper_fingers"
 			bieThreshold="0.0"
 			useDynamicDecoupling="false">
@@ -32,13 +40,6 @@
 				maxVelocity="0.04"
 				maxAcceleration="1.00" />
 		</jointTask>
-
-		<motionForceTask name="cartesian_task"
-			linkName="end-effector"
-			bieThreshold="0.0">
-			<velocitySaturation enabled="false" />
-			<otg type="acceleration" />
-		</motionForceTask>
 
 		<jointTask name="joint_task"
 			bieThreshold="0.0">

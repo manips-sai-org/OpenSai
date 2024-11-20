@@ -1,0 +1,65 @@
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_panda_allegro.urdf" />
+
+<robotControlConfiguration robotName="Panda_Allegro" robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_allegro_left.urdf">
+
+	<controller name="palm_hand_joints">
+
+		<motionForceTask name="palm" linkName="palm_link" />
+
+		<jointTask name="hand_joints">
+			<controlledJointNames>
+			joint_index_0
+			joint_index_1
+			joint_index_2
+			joint_index_3
+			joint_middle_0
+			joint_middle_1
+			joint_middle_2
+			joint_middle_3
+			joint_ring_0
+			joint_ring_1
+			joint_ring_2
+			joint_ring_3
+			joint_thumb_0
+			joint_thumb_1
+			joint_thumb_2
+			joint_thumb_3
+			</controlledJointNames>
+			<otg type="disabled" />
+		</jointTask>
+
+		<jointTask name="nullspace_joint_task" />
+	</controller>
+
+	<controller name="palm_fingertips">
+
+		<motionForceTask name="palm" linkName="palm_link" />
+
+		<motionForceTask name="thumb" linkName="thumb_tip" bieThreshold="0.0" >
+			<controlledDirectionsRotation/> <!-- leave empty for position control only -->
+		</motionForceTask>
+
+		<motionForceTask name="index" linkName="index_tip" bieThreshold="0.0" >
+			<controlledDirectionsRotation/> <!-- leave empty for position control only -->
+		</motionForceTask>
+
+		<motionForceTask name="middle" linkName="middle_tip" bieThreshold="0.0" >
+			<controlledDirectionsRotation/> <!-- leave empty for position control only -->
+		</motionForceTask>
+
+		<motionForceTask name="ring" linkName="ring_tip" bieThreshold="0.0" >
+			<controlledDirectionsRotation/> <!-- leave empty for position control only -->
+		</motionForceTask>
+
+		<jointTask name="nullspace_joint_task" />
+	</controller>
+
+	<controller name="joints">
+		<jointTask name="joint_task" useDynamicDecoupling="true">
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+
+</robotControlConfiguration>
