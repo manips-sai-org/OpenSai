@@ -1,0 +1,21 @@
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_fr3.urdf">
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="fr3" robotModelFile="${SAI2_MODEL_URDF_FOLDER}/fr3/fr3.urdf">
+
+	<controller name="cartesian_controller">
+		<motionForceTask name="cartesian_task" linkName="fr3_link8" />
+		<jointTask name="joint_task" />
+	</controller>
+
+	<controller name="joint_controller">
+		<jointTask name="joint_task" bieThreshold="0.0">
+			<velocitySaturation enabled="false" />
+			<otg type="disabled" />
+			<gains kp="50.0" kv="14.0" ki="0.0" />
+		</jointTask>
+	</controller>
+
+</robotControlConfiguration>
