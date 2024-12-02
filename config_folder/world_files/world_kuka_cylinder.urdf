@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+
+<world name="demo_world" gravity="0.0 0.0 -9.81">
+
+	<robot name="Kuka">
+		<model dir="${ROBOT_FILES_FOLDER}" path="iiwa7_plate.urdf" name="kuka_iiwa" />
+	</robot>
+	
+	<static_object name="Cylinder">
+		<origin xyz="0.6 0.0 0.1" rpy="0 0 0" />  <!-- Position the cylinder in the world -->
+		<visual>
+			<geometry>
+				<cylinder radius="0.05" length="0.2" />  <!-- Set radius and height of the cylinder -->
+			</geometry>
+			<material name="material_cylinder">
+				<color rgba="0.7 0.7 0.7 1.0" />  <!-- Gray color -->
+			</material>
+		</visual>
+		<collision>
+			<geometry>
+				<cylinder radius="0.05" length="0.2" />  <!-- Same dimensions for collision geometry -->
+			</geometry>
+		</collision>
+	</static_object>
+
+	<static_object name="Floor">
+		<origin xyz="0.0 0.0 -0.05" rpy="0 0 0" />
+		<visual>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+			<material name="material_floor">
+				<color rgba="0.2 0.2 0.2 1.0" />
+			</material>
+		</visual>
+		<collision>
+			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+			<geometry>
+				<box size="5.0 5.0 0.1" />
+			</geometry>
+		</collision>
+	</static_object>
+
+	<light name="light1" type="directional">
+		<position xyz="2.0 -2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<light name="light2" type="directional">
+		<position xyz="2.0 2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.5" />
+	</light>
+
+	<camera name="camera_fixed">
+		<position xyz=" 1.39589   1.0574 0.995843" />
+		<lookat xyz="0.791416 0.319597 0.695413" />
+		<vertical xyz="-0.177383 -0.243002  0.953669" />
+	</camera>
+
+</world>

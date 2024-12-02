@@ -2,8 +2,13 @@
 
 <world name="demo_world" gravity="0.0 0.0 -9.81">
 
-	<robot name="Panda_Allegro">
+	<robot name="panda_with_allegro">
 		<model dir="${SAI2_MODEL_URDF_FOLDER}/panda/" path="panda_arm_allegro_left.urdf" name="panda_arm_allegro" />
+	</robot>
+
+	<robot name="Table">
+		<origin xyz="0.6 0.3 0.2" rpy="0 0 0" />
+		<model dir="${ROBOT_FILES_FOLDER}" path="tiltable_table.urdf" name="tiltable_table" />
 	</robot>
 
 	<static_object name="Floor">
@@ -25,8 +30,8 @@
 		</collision>
 	</static_object>
 
-	<dynamic_object name="Box">
-		<origin xyz="0.5 0.0 0.15" rpy="0 0 0" />
+	<dynamic_object name="Cylinder">
+		<origin xyz="0.5 -0.1 0.15" rpy="0 0 0" />
 		<inertial>
 			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
 			<mass value="0.5" />
@@ -35,7 +40,7 @@
 		<visual>
 			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
 			<geometry>
-				<box size="0.1 0.1 0.1" />
+				<cylinder radius="0.05" length="0.2" />
 			</geometry>
 			<material name="material_green">
 				<color rgba="0.1 0.5 0.1 1.0" />
@@ -44,7 +49,7 @@
 		<collision>
 			<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
 			<geometry>
-				<box size="0.1 0.1 0.1" />
+				<cylinder radius="0.05" length="0.1" />
 			</geometry>
 		</collision>
 	</dynamic_object>

@@ -1,0 +1,73 @@
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_kuka_cylinder.urdf">
+
+	<logger logFolderName="log_files/kuka_plate_table" />
+
+	<simParameters frictionCoefficient="0.3" />
+
+	<forceSensor robotOrObjectName="Kuka"
+		linkName="end-effector"
+		filterCutoff="15.0" />
+
+	<object name="Cylinder"
+		type="cylinder"
+		radius="5"  
+		height="10"   
+		mass="1.0">   
+		
+		<pose xyz="0.5 0.0 0.1" rpy="0 0 0" />  <!-- position and orientation -->
+		
+		<material>
+			<color rgba="0.7 0.7 0.7 1.0" />     <!-- gray color -->
+		</material>
+	</object>
+
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="Kuka"
+	robotModelFile="${ROBOT_FILES_FOLDER}/iiwa7_plate.urdf">
+
+	<logger logFolderName="log_files/kuka_plate_table" />
+
+	<controller name="eef_control">
+		<motionForceTask name="eef_task"
+			linkName="end-effector">
+
+			<compliantFrame xyz="0 0 0.01"
+				rpy="0 0 0" />
+
+			<forceGains kp="0.7"
+				ki="4.5"
+				kv="1.5" />
+			<momentGains kp="0.7"
+				ki="5.5"
+				kv="1.5" />
+
+			<otg type="acceleration"
+				maxLinearVelocity="0.1"
+				maxLinearAcceleration="1.5" />
+
+		</motionForceTask>
+		<jointTask name="joint_task" />
+	</controller>
+</robotControlConfiguration>
+
+<robotControlConfiguration robotName="Table"
+	robotModelFile="${ROBOT_FILES_FOLDER}/tiltable_table.urdf">
+
+	<logger logFolderName="log_files/kuka_plate_table" />
+
+	<controller name="tilt_controller">
+		<jointTask name="tilt_task"
+			useDynamicDecoupling="false">
+			<gains kp="100.0"
+				kv="10.0"
+				ki="0.0" />
+			<otg type="jerk"
+				maxVelocity="0.15"
+				maxAcceleration="3.14"
+				maxJerk="15.0" />
+		</jointTask>
+	</controller>
+</robotControlConfiguration>

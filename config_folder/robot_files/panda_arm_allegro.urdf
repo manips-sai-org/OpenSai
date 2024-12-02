@@ -1,0 +1,850 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="panda_with_allegro">
+
+    <link name="link0">
+      <inertial>
+        <origin xyz="0 0 0.05" rpy="0 0 0" />
+        <mass value="4" />
+        <inertia ixx="0.4" iyy="0.4" izz="0.4" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+
+          <mesh filename="panda/meshes/visual/link0.obj"/>
+        </geometry>
+      </visual>
+<!--       <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link0.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link1">
+      <inertial>
+        <origin xyz="0 0 -0.07" rpy="0 -0 0" />
+        <mass value="3" />
+        <inertia ixx="0.3" iyy="0.3" izz="0.3" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link1.obj"/>
+        </geometry>
+      </visual>
+      <!-- <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link1.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link2">
+      <inertial>
+        <origin xyz="0 -0.1 0" rpy="0 -0 0" />
+        <mass value="3" />
+        <inertia ixx="0.3" iyy="0.3" izz="0.3" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link2.obj"/>
+        </geometry>
+      </visual>
+      <!-- <collision>
+        <geometry>
+          <mesh filename="../../core/sai2-model/urdf_models/allegro_panda/meshes/collision/link2.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link3">
+      <inertial>
+        <origin xyz="0.04 0 -0.05" rpy="0 -0 0" />
+        <mass value="2" />
+        <inertia ixx="0.2" iyy="0.2" izz="0.2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link3.obj"/>
+        </geometry>
+      </visual>
+      <!-- <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link3.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link4">
+      <inertial>
+        <origin xyz="-0.04 0.05 0" rpy="0 -0 0" />
+        <mass value="2" />
+        <inertia ixx="0.2" iyy="0.2" izz="0.2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link4.obj"/>
+        </geometry>
+      </visual>
+<!--       <collision>
+        <geometry>
+          <mesh filename="../../core/sai2-model/urdf_models/allegro_panda/meshes/collision/link4.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link5">
+      <inertial>
+        <origin xyz="0 0 -0.15" rpy="0 -0 0" />
+        <mass value="2" />
+        <inertia ixx="0.2" iyy="0.2" izz="0.2" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link5.obj"/>
+        </geometry>
+      </visual>
+<!--       <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link5.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link6">
+      <inertial>
+        <origin xyz="0.06 0 0" rpy="0 -0 0" />
+        <mass value="1.5" />
+        <inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link6.obj"/>
+        </geometry>
+      </visual>
+      <!-- <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link6.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="link7">
+      <inertial>
+        <origin xyz="0 0 0.17" rpy="0 -0 0" />
+        <mass value="1.8" />
+        <inertia ixx="0.09" iyy="0.05" izz="0.07" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="panda/meshes/visual/link7.obj"/>
+        </geometry>
+      </visual>
+      <!-- <collision>
+        <geometry>
+          <mesh filename="../../../allegro_panda/meshes/collision/link7.obj"/>
+        </geometry>
+      </collision> -->
+    </link>
+    <link name="end_effector">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.5" />
+        <inertia ixx="0.05" iyy="0.05" izz="0.05" ixy="0" ixz="0" iyz="0" />
+      </inertial>
+      <!-- <visual>
+        <geometry>
+          <sphere radius="0.035"/>
+        </geometry>
+        <material name="material_ee">
+            <color rgba="0.5 0.3 0.2 1.0" />
+        </material>
+      </visual> -->
+      <collision>
+        <geometry>
+          <sphere radius="0.035"/>
+        </geometry>
+      </collision>      
+    </link>
+    <joint name="joint_fixed" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0.142"/>
+      <parent link="link7"/>
+      <child link="end_effector"/>
+    </joint>
+
+
+
+    <joint name="joint1" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="0 0 0" xyz="0 0 0.333"/>
+      <parent link="link0"/>
+      <child link="link1"/>
+      <axis xyz="0 0 1"/>
+      <calibration falling="-25.0" />
+      <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    </joint>
+    <joint name="joint2" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7628" soft_upper_limit="1.7628"/>
+      <origin rpy="-1.57079632679 0 0" xyz="0 0 0"/>
+      <parent link="link1"/>
+      <child link="link2"/>
+      <axis xyz="0 0 1"/>
+      <calibration falling="-45.0" />
+      <limit effort="87" lower="-1.7628" upper="1.7628" velocity="2.1750"/>
+    </joint>
+    <joint name="joint3" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 -0.316 0"/>
+      <parent link="link2"/>
+      <child link="link3"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="87" lower="-2.8973" upper="2.8973" velocity="2.1750"/>
+    </joint>
+    <joint name="joint4" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-3.0718" soft_upper_limit="-0.0698"/>
+      <origin rpy="1.57079632679 0 0" xyz="0.0825 0 0"/>
+      <parent link="link3"/>
+      <child link="link4"/>
+      <axis xyz="0 0 1"/>
+      <calibration falling="-135.0" />
+      <limit effort="87" lower="-3.0718" upper="-0.0698" velocity="2.1750"/>
+    </joint>
+    <joint name="joint5" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="-1.57079632679 0 0" xyz="-0.0825 0.384 0"/>
+      <parent link="link4"/>
+      <child link="link5"/>
+      <axis xyz="0 0 1"/>
+      <calibration falling="45.0" />
+      <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    </joint>
+    <joint name="joint6" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-0.0175" soft_upper_limit="3.7525"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0"/>
+      <parent link="link5"/>
+      <child link="link6"/>
+      <axis xyz="0 0 1"/>
+      <calibration falling="80.0" />
+      <limit effort="12" lower="-0.0175" upper="3.7525" velocity="2.6100"/>
+    </joint>
+    <joint name="joint7" type="revolute">
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <origin rpy="1.57079632679 0 0" xyz="0.088 0 0"/>
+      <parent link="link6"/>
+      <child link="link7"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="12" lower="-2.8973" upper="2.8973" velocity="2.6100"/>
+    </joint>
+    <joint name="hand_connection" type="fixed">
+      <parent link="link7"/>
+      <child link="palm_link"/>
+      <origin xyz="0.05 0 0.135" rpy="3.1415926535 -1.57079632675 0"/>
+    </joint>
+
+  <!-- Allegro Hand -->
+  <!--
+    The file is converted from allegro_hand_description_right.xacro from the
+    unofficial ROS package of Allegro Hand (https://github.com/felixduvallet/
+    allegro-hand-ros/tree/master/allegro_hand_description). The conversion is
+    applied using the ROS package xacro to convert into urdf files. The model
+    files (.obj files and .mtl files) are converted from the .STL files from the
+    same source. The physical parameters of the model in the cited unofficial
+    fork of the Allegro hand have non-physical values. More precisely, many of
+    the inertia matrices are not SPD. Therefore we recomputed all the inertia
+    matrices for this URDF model in Drake. These values are estimated from the
+    provided geometry and using a constant density approximation on each
+    component. We used the best available value of mass available to us. Joint
+    damping values are estimated based on the expected angular velocity of each
+    joint and using a typical load of about 200 gr being held by the hand. This
+    allows us to estimate a typical torque at the joints which, together with a
+    nominal value of angular velocity, allows us to estimate a reasonable
+    magnitude for joint damping. It is worth noting that the unofficial version
+    of these files were providing non-physical values as much as 300 times
+    larger. The effort limits of the joints are justified to 0.7 Nm according to
+    the manufacturer's specs (http://www.simlab.co.kr/Allegro-Hand.htm#
+    Specifications). The collision geometry for link_13 (thumb base) has been
+    omitted in this version. It frequently led to meaningless collisions with
+    other hand geometries but its omission is justified because it is small
+    enough that its removal is unlikely to cause us to miss meaningful
+    collisions.
+  -->
+  <link name="palm_link">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/base_link.obj"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0 "/>
+      <material name="black">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <origin rpy="0 0 0" xyz="-0.009300 0 -0.0475"/>
+      <geometry>
+        <box size="0.0408 0.1130 0.095"/>
+      </geometry>
+    </collision> -->
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0.0475"/>
+      <mass value="0.4154"/>
+      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+    </inertial>
+  </link>
+  <!-- ============================================================================= -->
+  <!-- FINGERS -->
+  <!-- RIGHT HAND due to which finger is number 0 -->
+  <!-- for LEFT HAND switch the sign of the **offset_origin_y** and **finger_angle_r** parameters-->
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_0.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_0.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0164"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0119"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_0.0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="15" lower="-0.47" upper="0.47" velocity="7"/>
+    <parent link="palm_link"/>
+    <child link="link_0.0"/>
+    <origin rpy="-0.08726646255 0 0" xyz="0 0.0435 -0.001542"/>
+    <dynamics damping="3" friction="10"/>
+  </joint>
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_1.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_1.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.054"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.065"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_1.0" type="revolute">
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_0.0"/>
+    <child link="link_1.0"/>
+    <origin xyz="0 0 0.0164"/>
+    <dynamics damping="3" friction="5"/>
+  </joint>
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_2.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_2.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0384"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0355"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_2.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.174" upper="1.709" velocity="7"/>
+    <parent link="link_1.0"/>
+    <child link="link_2.0"/>
+    <origin xyz="0 0 0.054"/>
+    <dynamics damping="8" friction="10"/>
+  </joint>
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_3.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0267"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0096"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_3.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
+    <parent link="link_2.0"/>
+    <child link="link_3.0"/>
+    <origin xyz="0 0 0.0384"/>
+    <dynamics damping="10" friction="12"/>
+  </joint>
+  <!-- [FINGER TIP] -->
+  <link name="link_3.0_tip">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0_tip.obj"/>
+      </geometry>
+      <material name="white">
+        <color rgba=".9 .9 .9 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <sphere radius="0.012"/>
+      </geometry>
+    </collision> -->
+    <inertial>
+      <mass value="0.0168"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07"/>
+    </inertial>
+  </link>
+  <joint name="joint_3.0_tip" type="fixed">
+    <parent link="link_3.0"/>
+    <child link="link_3.0_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_4.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_0.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0164"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0119"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_4.0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="15" lower="-0.47" upper="0.47" velocity="7"/>
+    <parent link="palm_link"/>
+    <child link="link_4.0"/>
+    <origin rpy="0.0 0 0" xyz="0 0 0.0007"/>
+    <dynamics damping="3" friction="10"/>
+  </joint>
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_5.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_1.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.054"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.065"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_5.0" type="revolute">
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_4.0"/>
+    <child link="link_5.0"/>
+    <origin xyz="0 0 0.0164"/>
+    <dynamics damping="3" friction="5"/>
+  </joint>
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_6.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_2.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0384"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0355"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_6.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.174" upper="1.709" velocity="7"/>
+    <parent link="link_5.0"/>
+    <child link="link_6.0"/>
+    <origin xyz="0 0 0.054"/>
+    <dynamics damping="8" friction="10"/>
+  </joint>
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_7.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0267"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0096"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_7.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
+    <parent link="link_6.0"/>
+    <child link="link_7.0"/>
+    <origin xyz="0 0 0.0384"/>
+    <dynamics damping="10" friction="12"/>
+  </joint>
+  <!-- [FINGER TIP] -->
+  <link name="link_7.0_tip">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0_tip.obj"/>
+      </geometry>
+      <material name="white">
+        <color rgba=".9 .9 .9 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <sphere radius="0.012"/>
+      </geometry>
+    </collision> -->
+    <inertial>
+      <mass value="0.0168"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07"/>
+    </inertial>
+  </link>
+  <joint name="joint_7.0_tip" type="fixed">
+    <parent link="link_7.0"/>
+    <child link="link_7.0_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+  <!-- [LINK 0, 4, 8] -->
+  <link name="link_8.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_0.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0164"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0082"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0119"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.01666658333e-06" ixy="0.0" ixz="0.0" iyy="6.47677333333e-07" iyz="0.0" izz="1.01666658333e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_8.0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="15" lower="-0.47" upper="0.47" velocity="7"/>
+    <parent link="palm_link"/>
+    <child link="link_8.0"/>
+    <origin rpy="0.08726646255 0 0" xyz="0 -0.0435 -0.001542"/>
+    <dynamics damping="3" friction="10"/>
+  </joint>
+  <!-- [LINK 1, 5, 9] -->
+  <link name="link_9.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_1.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.054"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.027"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.065"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="7.95654166667e-05" ixy="1.7199e-05" ixz="8.75875e-06" iyy="2.47088833333e-05" iyz="2.413125e-05" izz="7.95654166667e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_9.0" type="revolute">
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
+    <axis xyz="0 1 0"/>
+    <parent link="link_8.0"/>
+    <child link="link_9.0"/>
+    <origin xyz="0 0 0.0164"/>
+    <dynamics damping="3" friction="5"/>
+  </joint>
+  <!-- [LINK 2, 6, 10]-->
+  <link name="link_10.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_2.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0384"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0192"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0355"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="2.63979183333e-05" ixy="6.67968e-06" ixz="4.783625e-06" iyy="1.34948516667e-05" iyz="9.372e-06" izz="2.63979183333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_10.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.174" upper="1.709" velocity="7"/>
+    <parent link="link_9.0"/>
+    <child link="link_10.0"/>
+    <origin xyz="0 0 0.054"/>
+    <dynamics damping="8" friction="10"/>
+  </joint>
+  <!-- [LINK 3, 7, 11] -->
+  <link name="link_11.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0.obj"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0267"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0096"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="4.701248e-06" ixy="1.255968e-06" ixz="1.2936e-06" iyy="3.649312e-06" iyz="1.7622e-06" izz="4.701248e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_11.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
+    <parent link="link_10.0"/>
+    <child link="link_11.0"/>
+    <origin xyz="0 0 0.0384"/>
+    <dynamics damping="10" friction="12"/>
+  </joint>
+  <!-- [FINGER TIP] -->
+  <link name="link_11.0_tip">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_3.0_tip.obj"/>
+      </geometry>
+      <material name="white">
+        <color rgba=".9 .9 .9 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <sphere radius="0.012"/>
+      </geometry>
+    </collision> -->
+    <inertial>
+      <mass value="0.0168"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07"/>
+    </inertial>
+  </link>
+  <joint name="joint_11.0_tip" type="fixed">
+    <parent link="link_11.0"/>
+    <child link="link_11.0_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
+  </joint>
+  <!-- THUMB -->
+  <!-- [LINK 12] -->
+  <link name="link_12.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_12.0_right.obj"/>
+      </geometry>
+      <material name="black">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0358 0.034 0.0455"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="-0.0179 0.009 0.0145"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0176"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="1.89273333333e-5" ixy="7.16716e-06" ixz="5.35568e-06" iyy="1.43008213333e-05" iyz="6.8068e-06" izz="1.89273333333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_12.0" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="15" lower="0.263" upper="1.396" velocity="7"/>
+    <parent link="palm_link"/>
+    <child link="link_12.0"/>
+    <origin rpy="0 -1.65806278845 -1.5707963259" xyz="-0.0182 0.019333 -0.045987"/>
+    <dynamics damping="3" friction="10"/>
+  </joint>
+  <!-- [LINK 13] -->
+  <link name="link_13.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_13.0.obj"/>
+      </geometry>
+      <material name="black">
+        <color rgba=".2 .2 .2 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0177"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.00885"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0119"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="4.24250866667e-06" ixy="1.032087e-06" ixz="1.603525e-06" iyy="4.52362633333e-06" iyz="1.44808125e-06" izz="4.24250866667e-06"/>
+    </inertial>
+  </link>
+  <joint name="joint_13.0" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="15" lower="-0.105" upper="1.163" velocity="7"/>
+    <parent link="link_12.0"/>
+    <child link="link_13.0"/>
+    <origin xyz="-0.027 0.005 0.0399"/>
+    <dynamics damping="3" friction="5"/>
+  </joint>
+  <!-- [LINK 14] -->
+  <link name="link_14.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_14.0.obj"/>
+      </geometry>
+      <material name="black">
+                </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0514"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0257"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.038"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="4.30439933333e-05" ixy="9.57068e-06" ixz="5.1205e-06" iyy="1.44451933333e-05" iyz="1.342825e-05" izz="4.30439933333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_14.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.189" upper="1.644" velocity="7"/>
+    <parent link="link_13.0"/>
+    <child link="link_14.0"/>
+    <origin xyz="0 0 0.0177"/>
+    <dynamics damping="3" friction="10"/>
+  </joint>
+  <!-- [LINK 15] -->
+  <link name="link_15.0">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_15.0.obj"/>
+      </geometry>
+      <material name="black">
+                </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <box size="0.0196 0.0275 0.0423"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.02115"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0388"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="3.29223173333e-05" ixy="8.042076e-06" ixz="5.2283e-06" iyy="1.47493026667e-5" iyz="1.1283525e-5" izz="3.29223173333e-05"/>
+    </inertial>
+  </link>
+  <joint name="joint_15.0" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="15" lower="-0.162" upper="1.719" velocity="7"/>
+    <parent link="link_14.0"/>
+    <child link="link_15.0"/>
+    <origin xyz="0 0 0.0514"/>
+    <dynamics damping="3" friction="12"/>
+  </joint>
+  <!-- [FINGER TIP] -->
+  <link name="link_15.0_tip">
+    <visual>
+      <geometry>
+        <mesh filename="allegro/link_15.0_tip.obj"/>
+      </geometry>
+      <material name="white">
+        <color rgba=".9 .9 .9 1"/>
+      </material>
+    </visual>
+    <!-- <collision>
+      <geometry>
+        <sphere radius="0.012"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision> -->
+    <inertial>
+      <mass value="0.0168"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="9.68e-07" ixy="0" ixz="0" iyy="9.68e-07" iyz="0" izz="9.68e-07"/>
+    </inertial>
+  </link>
+  <joint name="joint_15.0_tip" type="fixed">
+    <parent link="link_15.0"/>
+    <child link="link_15.0_tip"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0423"/>
+  </joint>
+</robot>

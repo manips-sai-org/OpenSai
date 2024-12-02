@@ -1,0 +1,104 @@
+<redisConfiguration namespacePrefix="opensai" />
+
+<simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_panda_allegro.urdf">
+
+
+	<simParameters frictionCoefficient="1.5"
+		collisionRestitutionCoefficient="0.1" />
+
+	<logger logFolderName="log_files/single_panda_gripper/simviz" />
+	<!-- <logger logFolderName="log_files/panda_hand/simviz" /> -->
+
+	<forceSensor robotOrObjectName="panda_with_allegro"
+		linkName="link7"  
+		filterCutoff="5.0" />
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="panda_with_allegro"
+
+    robotModelFile="/Users/rheamalhotra/Desktop/robotics/OpenSai/core/sai2-model/urdf_models/allegro_panda/panda_arm_allegro_left.urdf">
+    <!-- robotModelFile="/Users/rheamalhotra/Desktop/robotics/OpenSai/core/sai2-model/urdf_models/allegro_panda/panda_arm_allegro.urdf"> -->
+
+    <logger logFolderName="log_files/panda_with_allegro/controllers" />
+
+	<controller name="joint_controller">
+        <!-- Joint Controller Task -->
+        <jointTask name="joint_task">
+            <velocitySaturation enabled="true" />
+            <gains kp="200.0"
+                kv="10.0"
+                ki="0.0" />
+            <otg type="disabled" />
+        </jointTask>
+    </controller>
+
+
+    <controller name="cartesian_controller">
+        <!-- Cartesian Task -->
+        <motionForceTask name="cartesian_task"
+            linkName="link7"  
+            bieThreshold="0.0">
+            <velocitySaturation enabled="false" />
+            <otg type="acceleration" />
+        </motionForceTask>
+
+        <!-- Allegro Hand Fingers Task -->
+        <jointTask name="gripper_fingers"
+            bieThreshold="0.0"
+            useDynamicDecoupling="false">
+            <controlledJointNames>
+				joint_index_0
+				joint_index_1
+				joint_index_2
+				joint_index_3
+				joint_middle_0
+				joint_middle_1
+				joint_middle_2
+				joint_middle_3
+				joint_ring_0
+				joint_ring_1
+				joint_ring_2
+				joint_ring_3
+				joint_thumb_0
+				joint_thumb_1
+				joint_thumb_2
+				joint_thumb_3
+            </controlledJointNames>
+            <gains kp="400.0"
+                kv="15.0"
+                ki="0.0" />
+            <otg type="acceleration"
+                maxVelocity="0.04"
+                maxAcceleration="1.00" />
+        </jointTask>
+
+
+        <!-- Joint Task -->
+        <jointTask name="joint_task"
+            bieThreshold="0.0">
+            <gains kp="200.0"
+                kv="10.0"
+                ki="0.0" />
+            <otg type="disabled" />
+        </jointTask>
+    </controller>
+</robotControlConfiguration>
+
+<robotControlConfiguration robotName="Table"
+	robotModelFile="${ROBOT_FILES_FOLDER}/tiltable_table.urdf">
+
+	<logger logFolderName="log_files/kuka_plate_table" />
+
+	<controller name="tilt_controller">
+		<jointTask name="tilt_task"
+			useDynamicDecoupling="false">
+			<gains kp="100.0"
+				kv="10.0"
+				ki="0.0" />
+			<otg type="jerk"
+				maxVelocity="0.15"
+				maxAcceleration="3.14"
+				maxJerk="15.0" />
+		</jointTask>
+	</controller>
+</robotControlConfiguration>
