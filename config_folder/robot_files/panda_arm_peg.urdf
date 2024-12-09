@@ -9,12 +9,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link0.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link0.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link0.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link0.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -26,12 +26,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link1.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link1.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link1.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link1.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -43,12 +43,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link2.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link2.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link2.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link2.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -60,12 +60,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link3.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link3.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link3.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link3.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -77,12 +77,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link4.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link4.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link4.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link4.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -94,12 +94,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link5.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link5.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link5.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link5.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -111,12 +111,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link6.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link6.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link6.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link6.obj"/>
 			</geometry>
 		</collision> -->
 	</link>
@@ -128,12 +128,12 @@
 		</inertial>
 		<visual>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/visual/link7.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/visual/link7.obj"/>
 			</geometry>
 		</visual>
 		<!-- <collision>
 			<geometry>
-				<mesh filename="${SAI2_MODEL_URDF_FOLDER}/panda/meshes/collision/link7.obj"/>
+				<mesh filename="${SAI_MODEL_URDF_FOLDER}/panda/meshes/collision/link7.obj"/>
 			</geometry>
 		</collision> -->
 	</link>

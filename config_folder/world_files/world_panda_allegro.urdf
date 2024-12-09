@@ -3,7 +3,7 @@
 <world name="demo_world" gravity="0.0 0.0 -9.81">
 
 	<robot name="Panda_Allegro">
-		<model dir="${SAI2_MODEL_URDF_FOLDER}/panda/" path="panda_arm_allegro_left.urdf" name="panda_arm_allegro" />
+		<model dir="${SAI_MODEL_URDF_FOLDER}/panda/" path="panda_arm_allegro_left.urdf" name="panda_arm_allegro" />
 	</robot>
 
 	<static_object name="Floor">
