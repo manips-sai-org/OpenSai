@@ -24,6 +24,7 @@ The redis keys for the sensors are organized as follows `<namespace_prefix>::sen
 | -------- | ------- | ------- | -------- |
 | joint_positions | the position of the robot joints | a vector of the same size as the robot DoFs | opensai::sensors::Panda::joint_positions |
 | joint_velocities | the velocities of the robot joint | a vector of the same size as the robot DoFs | opensai::sensors::Panda::joint_velocities |
+| model::mass_matrix | the robot mass matrix (optionnal). Used as an input if the parameter readMassMatrixFromRedis is set to true in the config | a square matrix of the same size as the robot DoFs | opensai::sensors::Panda::model::mass_matrix |
 
 The simulation and controllers also supports force torque sensors on the robots or objects. For those, the sensor specific information will contain the link name of the link where the sensor is attached. If the controller implements a motion force task on a link, it will expect force torque information on that robot on that link in order to implement closed loop force control. 
 
@@ -77,7 +78,16 @@ The controller outputs robot command that are used by the simulation or the actu
 
 ## Data for monitoring
 
-In addition to storing all the tada required by the robot controllers and simviz, some data is also published to redis by the controller only for monitoring purpose (it is not used by the simulation or robot drivers). That data is controller and task specific so the redis key is contructed as follows : `<namespace_prefix>::controllers::<robot_name>::<controller_name>::<task_name>::<monitoring_data>`.
+In addition to storing all the data required by the robot controllers and simviz, some data is also published to redis by the controller only for monitoring purpose (it is not used by the simulation or robot drivers).
+
+The monitoring data includes the list of joint names corresponding to the ordering used in all vectors (joint positions, velocities and command torques for that robot) as well as a boolean indicating if the controller is currently running or not for that robot.
+
+| monitoring data | description | type | example of full key |
+| -------- | ------- | ------- | -------- |
+| is_running | true if the controller for that robot is currently running, false otherwise | a boolean | opensai::controllers::Panda::is_running |
+| joint_names | the list of joint names in the same order as the order used for q, dq and the torques | a list of names (str) | opensai::controllers::Panda::joint_names |
+
+The rest of the monitoring data is controller and task specific so the redis key is contructed as follows : `<namespace_prefix>::controllers::<robot_name>::<controller_name>::<task_name>::<monitoring_data>`.
 
 monitoring data for joint tasks
 
