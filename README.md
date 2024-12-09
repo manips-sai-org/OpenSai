@@ -17,7 +17,7 @@ sh scripts/install_core_libraries.sh
 Finally, build the SAI_main application (which will be located in the bin folder)
 
 ```
-sh scripts/build_SAI.sh
+sh scripts/build_SAI_main.sh
 ```
 
 ## Usage Instructions
