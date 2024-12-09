@@ -17,21 +17,21 @@ class State(Enum):
 
 @dataclass
 class RedisKeys:
-    kuka_goal_position: str = "opensai::controllers::Kuka::eef_control::eef_task::goal_position"
-    kuka_goal_orientation: str = "opensai::controllers::Kuka::eef_control::eef_task::goal_orientation"
-    kuka_current_position: str = "opensai::controllers::Kuka::eef_control::eef_task::current_position"
-    kuka_current_orientation: str = "opensai::controllers::Kuka::eef_control::eef_task::current_orientation"
-    kuka_sensed_force: str = "opensai::controllers::Kuka::eef_control::eef_task::sensed_force"
-    kuka_desired_force: str = "opensai::controllers::Kuka::eef_control::eef_task::desired_force"
-    kuka_desired_moment: str = "opensai::controllers::Kuka::eef_control::eef_task::desired_moment"
-    kuka_force_space_dimension: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_dimension"
-    kuka_moment_space_dimension: str = "opensai::controllers::Kuka::eef_control::eef_task::moment_space_dimension"
-    kuka_force_space_axis: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_axis"
-    kuka_moment_space_axis: str = "opensai::controllers::Kuka::eef_control::eef_task::moment_space_axis"
-    kuka_closed_loop_force_control: str = "opensai::controllers::Kuka::eef_control::eef_task::closed_loop_force_control"
-    kuka_otg_enabled: str = "opensai::controllers::Kuka::eef_control::eef_task::otg_enabled"
+    kuka_goal_position: str = "sai::controllers::Kuka::eef_control::eef_task::goal_position"
+    kuka_goal_orientation: str = "sai::controllers::Kuka::eef_control::eef_task::goal_orientation"
+    kuka_current_position: str = "sai::controllers::Kuka::eef_control::eef_task::current_position"
+    kuka_current_orientation: str = "sai::controllers::Kuka::eef_control::eef_task::current_orientation"
+    kuka_sensed_force: str = "sai::controllers::Kuka::eef_control::eef_task::sensed_force"
+    kuka_desired_force: str = "sai::controllers::Kuka::eef_control::eef_task::desired_force"
+    kuka_desired_moment: str = "sai::controllers::Kuka::eef_control::eef_task::desired_moment"
+    kuka_force_space_dimension: str = "sai::controllers::Kuka::eef_control::eef_task::force_space_dimension"
+    kuka_moment_space_dimension: str = "sai::controllers::Kuka::eef_control::eef_task::moment_space_dimension"
+    kuka_force_space_axis: str = "sai::controllers::Kuka::eef_control::eef_task::force_space_axis"
+    kuka_moment_space_axis: str = "sai::controllers::Kuka::eef_control::eef_task::moment_space_axis"
+    kuka_closed_loop_force_control: str = "sai::controllers::Kuka::eef_control::eef_task::closed_loop_force_control"
+    kuka_otg_enabled: str = "sai::controllers::Kuka::eef_control::eef_task::otg_enabled"
     config_file_name: str = "::sai-interfaces-webui::config_file_name"
-    table_goal_angles: str = "opensai::controllers::Table::tilt_controller::tilt_task::goal_position"
+    table_goal_angles: str = "sai::controllers::Table::tilt_controller::tilt_task::goal_position"
 
 
 redis_keys = RedisKeys()

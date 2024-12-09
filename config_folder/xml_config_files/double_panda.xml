@@ -1,4 +1,4 @@
-<redisConfiguration namespacePrefix="opensai" />
+<redisConfiguration namespacePrefix="sai" />
 
 <simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_double_panda.urdf">
 
@@ -45,7 +45,7 @@
 </robotControlConfiguration>
 
 <robotControlConfiguration robotName="Panda2"
-	redisPrefix="opensai"
+	redisPrefix="sai"
 	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf">
 	<baseFrame xyz="0 0.30 0"
 		rpy="0 0 0" />

@@ -1,4 +1,4 @@
-# List of inputs and outputs for Opensai simviz and controllers
+# List of inputs and outputs for SAI simviz and controllers
 
 There are 2 types of controller inputs:
 - Sensor data for the feedback control loops
@@ -22,26 +22,26 @@ The redis keys for the sensors are organized as follows `<namespace_prefix>::sen
 
 | sensor_specific_suffix | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| joint_positions | the position of the robot joints | a vector of the same size as the robot DoFs | opensai::sensors::Panda::joint_positions |
-| joint_velocities | the velocities of the robot joint | a vector of the same size as the robot DoFs | opensai::sensors::Panda::joint_velocities |
-| model::mass_matrix | the robot mass matrix (optionnal). Used as an input if the parameter readMassMatrixFromRedis is set to true in the config | a square matrix of the same size as the robot DoFs | opensai::sensors::Panda::model::mass_matrix |
+| joint_positions | the position of the robot joints | a vector of the same size as the robot DoFs | sai::sensors::Panda::joint_positions |
+| joint_velocities | the velocities of the robot joint | a vector of the same size as the robot DoFs | sai::sensors::Panda::joint_velocities |
+| model::mass_matrix | the robot mass matrix (optionnal). Used as an input if the parameter readMassMatrixFromRedis is set to true in the config | a square matrix of the same size as the robot DoFs | sai::sensors::Panda::model::mass_matrix |
 
 The simulation and controllers also supports force torque sensors on the robots or objects. For those, the sensor specific information will contain the link name of the link where the sensor is attached. If the controller implements a motion force task on a link, it will expect force torque information on that robot on that link in order to implement closed loop force control. 
 
 | sensor_specific_suffix | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| ft_sensor::<link_name>::force | the force that the sensor on that robot link applies to the environment, in the sensor frame | a vector of 3 values | opensai::sensors::Panda::ft_sensor::<br>end-effector::force |
-| ft_sensor::<link_name>::moment | the moment that the sensor on that robot link applies to the environment, in the sensor frame | a vector of 3 values | opensai::sensors::Panda::ft_sensor::<br>end-effector::moment |
+| ft_sensor::<link_name>::force | the force that the sensor on that robot link applies to the environment, in the sensor frame | a vector of 3 values | sai::sensors::Panda::ft_sensor::<br>end-effector::force |
+| ft_sensor::<link_name>::moment | the moment that the sensor on that robot link applies to the environment, in the sensor frame | a vector of 3 values | sai::sensors::Panda::ft_sensor::<br>end-effector::moment |
 
 ### Other sensor data provided by the simulation
 The simulation also supports force sensors on objects, as well as object pose and velocity estimation. The information is not used directly used by the controller, but it can be used by the planner to provide tasks goals for example. On the force sensor, the link name is ommitted for objects.
 
 | sensor_specific_suffix | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| ft_sensor::force | the force that the sensor on that object link applies to the environment, in the sensor frame | a vector of 3 values | opensai::sensors::Box::ft_sensor::force |
-| ft_sensor::moment | the moment that the sensor on that object link applies to the environment, in the sensor frame | a vector of 3 values | opensai::sensors::Box::ft_sensor::moment |
-| object_pose | the pose of the object in the world frame | a 4x4 transformation matrix | opensai::sensors::Box::object_pose |
-| object_velocity | the velocity (linear first and angular second) of the object | a vector of 6 values (3 linear velocity and 3 angular velocity) | opensai::sensors::Box::object_velocity |
+| ft_sensor::force | the force that the sensor on that object link applies to the environment, in the sensor frame | a vector of 3 values | sai::sensors::Box::ft_sensor::force |
+| ft_sensor::moment | the moment that the sensor on that object link applies to the environment, in the sensor frame | a vector of 3 values | sai::sensors::Box::ft_sensor::moment |
+| object_pose | the pose of the object in the world frame | a 4x4 transformation matrix | sai::sensors::Box::object_pose |
+| object_velocity | the velocity (linear first and angular second) of the object | a vector of 6 values (3 linear velocity and 3 angular velocity) | sai::sensors::Box::object_velocity |
 
 ## Task goals
 
@@ -51,22 +51,22 @@ The following are the task goals for joint tasks
 
 | task_goal | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| goal_position | the goal position of the joints | a vector of the same size as the task DoFs  | opensai::controllers::Panda::joint_controller::<br>joint_task::goal_position |
-| goal_velocity | the goal velocity of the joints | a vector of the same size as the task DoFs  | opensai::controllers::Panda::joint_controller::<br>joint_task::goal_velocity |
-| goal_acceleration | the goal acceleration of the joints | a vector of the same size as the task DoFs  | opensai::controllers::Panda::joint_controller::<br>joint_task::goal_acceleration |
+| goal_position | the goal position of the joints | a vector of the same size as the task DoFs  | sai::controllers::Panda::joint_controller::<br>joint_task::goal_position |
+| goal_velocity | the goal velocity of the joints | a vector of the same size as the task DoFs  | sai::controllers::Panda::joint_controller::<br>joint_task::goal_velocity |
+| goal_acceleration | the goal acceleration of the joints | a vector of the same size as the task DoFs  | sai::controllers::Panda::joint_controller::<br>joint_task::goal_acceleration |
 
 The following are the task goals for motion force task
 
 | task_goal | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| goal_position | the cartesian task goal position | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_position |
-| goal_orientation | the cartesian task goal orientation | a 3d rotation matrix  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_orientation |
-| goal_linear_velocity | the cartesian task goal linear velocity | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_linear_velocity |
-| goal_angular_velocity | the cartesian task goal angular velocity | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_angular_velocity |
-| goal_linear_acceleration | the cartesian task goal linear acceleration | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_linear_acceleration |
-| goal_angular_acceleration | the cartesian task goal angular acceleration | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_angular_acceleration |
-| desired_force | the cartesian task desired force that the end effector should apply to the environment | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::desired_force |
-| desired_moment | the cartesian task desired moment that the end effector should apply to the environment | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::desired_moment |
+| goal_position | the cartesian task goal position | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_position |
+| goal_orientation | the cartesian task goal orientation | a 3d rotation matrix  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_orientation |
+| goal_linear_velocity | the cartesian task goal linear velocity | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_linear_velocity |
+| goal_angular_velocity | the cartesian task goal angular velocity | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_angular_velocity |
+| goal_linear_acceleration | the cartesian task goal linear acceleration | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_linear_acceleration |
+| goal_angular_acceleration | the cartesian task goal angular acceleration | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::goal_angular_acceleration |
+| desired_force | the cartesian task desired force that the end effector should apply to the environment | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::desired_force |
+| desired_moment | the cartesian task desired moment that the end effector should apply to the environment | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::desired_moment |
 
 ## Robot commands
 
@@ -74,7 +74,7 @@ The controller outputs robot command that are used by the simulation or the actu
 
 | command_type | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| control_torques | torques to be applied to the robot joints | a vector with the same size as the robot DoFs | opensai::commands::Panda::control_torques|
+| control_torques | torques to be applied to the robot joints | a vector with the same size as the robot DoFs | sai::commands::Panda::control_torques|
 
 ## Data for monitoring
 
@@ -84,8 +84,8 @@ The monitoring data includes the list of joint names corresponding to the orderi
 
 | monitoring data | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| is_running | true if the controller for that robot is currently running, false otherwise | a boolean | opensai::controllers::Panda::is_running |
-| joint_names | the list of joint names in the same order as the order used for q, dq and the torques | a list of names (str) | opensai::controllers::Panda::joint_names |
+| is_running | true if the controller for that robot is currently running, false otherwise | a boolean | sai::controllers::Panda::is_running |
+| joint_names | the list of joint names in the same order as the order used for q, dq and the torques | a list of names (str) | sai::controllers::Panda::joint_names |
 
 The rest of the monitoring data is controller and task specific so the redis key is contructed as follows : `<namespace_prefix>::controllers::<robot_name>::<controller_name>::<task_name>::<monitoring_data>`.
 
@@ -93,17 +93,17 @@ monitoring data for joint tasks
 
 | monitoring data | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| current_position | the position of the joints involved in the joint task | a vector of the same size as the task DoFs | opensai::controllers::Panda::joint_controller::<br>joint_task::current_position |
-| current_velocity | the velocity of the joints involved in the joint task | a vector of the same size as the task DoFs | opensai::controllers::Panda::joint_controller::<br>joint_task::current_velocity |
+| current_position | the position of the joints involved in the joint task | a vector of the same size as the task DoFs | sai::controllers::Panda::joint_controller::<br>joint_task::current_position |
+| current_velocity | the velocity of the joints involved in the joint task | a vector of the same size as the task DoFs | sai::controllers::Panda::joint_controller::<br>joint_task::current_velocity |
 
 monitoring data for motion force tasks
 
 | monitoring data | description | type | example of full key |
 | -------- | ------- | ------- | -------- |
-| current_position | the cartesian task current position | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_position |
-| current_orientation | the cartesian task current orientation | a 3d rotation matrix  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_orientation |
-| current_linear_velocity | the cartesian task current linear velocity | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_linear_velocity |
-| current_angular_velocity | the cartesian task current angular velocity | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_angular_velocity |
-| sensed_force | the cartesian task sensed force that the end effector should apply to the environment, resolved at the control frame | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::sensed_force |
-| sensed_moment | the cartesian task sensed moment that the end effector should apply to the environment, resolved at the control frame | a 3d vector  | opensai::controllers::Panda::cartesian_controller::<br>cartesian_task::sensed_moment |
+| current_position | the cartesian task current position | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_position |
+| current_orientation | the cartesian task current orientation | a 3d rotation matrix  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_orientation |
+| current_linear_velocity | the cartesian task current linear velocity | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_linear_velocity |
+| current_angular_velocity | the cartesian task current angular velocity | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::current_angular_velocity |
+| sensed_force | the cartesian task sensed force that the end effector should apply to the environment, resolved at the control frame | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::sensed_force |
+| sensed_moment | the cartesian task sensed moment that the end effector should apply to the environment, resolved at the control frame | a 3d vector  | sai::controllers::Panda::cartesian_controller::<br>cartesian_task::sensed_moment |
 

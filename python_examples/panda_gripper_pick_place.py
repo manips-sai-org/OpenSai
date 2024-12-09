@@ -17,13 +17,13 @@ class State(Enum):
 
 @dataclass
 class RedisKeys:
-  cartesian_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_position"
-  cartesian_task_goal_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::goal_orientation"
-  cartesian_task_current_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_position"
-  cartesian_task_current_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_orientation"
-  gripper_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::gripper_fingers::goal_position"
-  object_current_position: str = "opensai::sensors::Box::object_pose"
-  active_controller: str = "opensai::controllers::Panda::active_controller_name"
+  cartesian_task_goal_position: str = "sai::controllers::Panda::cartesian_controller::cartesian_task::goal_position"
+  cartesian_task_goal_orientation: str = "sai::controllers::Panda::cartesian_controller::cartesian_task::goal_orientation"
+  cartesian_task_current_position: str = "sai::controllers::Panda::cartesian_controller::cartesian_task::current_position"
+  cartesian_task_current_orientation: str = "sai::controllers::Panda::cartesian_controller::cartesian_task::current_orientation"
+  gripper_task_goal_position: str = "sai::controllers::Panda::cartesian_controller::gripper_fingers::goal_position"
+  object_current_position: str = "sai::sensors::Box::object_pose"
+  active_controller: str = "sai::controllers::Panda::active_controller_name"
   config_file_name: str = "::sai-interfaces-webui::config_file_name"
 
 redis_keys = RedisKeys()
