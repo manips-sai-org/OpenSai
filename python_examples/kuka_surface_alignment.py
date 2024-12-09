@@ -30,7 +30,7 @@ class RedisKeys:
     kuka_moment_space_axis: str = "opensai::controllers::Kuka::eef_control::eef_task::moment_space_axis"
     kuka_closed_loop_force_control: str = "opensai::controllers::Kuka::eef_control::eef_task::closed_loop_force_control"
     kuka_otg_enabled: str = "opensai::controllers::Kuka::eef_control::eef_task::otg_enabled"
-    config_file_name: str = "::sai2-interfaces-webui::config_file_name"
+    config_file_name: str = "::sai-interfaces-webui::config_file_name"
     table_goal_angles: str = "opensai::controllers::Table::tilt_controller::tilt_task::goal_position"
 
 

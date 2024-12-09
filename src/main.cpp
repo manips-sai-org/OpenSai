@@ -12,9 +12,9 @@ int main(int argc, char** argv) {
 	std::string config_folder = std::string(CONFIG_FOLDER_PATH);
 
 	// add world file folder to search path for parser
-	Sai2Model::URDF_FOLDERS["WORLD_FILES_FOLDER"] =
+	SaiModel::URDF_FOLDERS["WORLD_FILES_FOLDER"] =
 		config_folder + "/world_files";
-	Sai2Model::URDF_FOLDERS["ROBOT_FILES_FOLDER"] =
+	SaiModel::URDF_FOLDERS["ROBOT_FILES_FOLDER"] =
 		config_folder + "/robot_files";
 
 	// define the xml files folder. Only config files in that folder can be used
@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 		config_file = config_file.substr(last_slash_position + 1);
 	}
 
-	Sai2Interfaces::MainRedisInterface main_interface(xml_files_folder,
+	SaiInterfaces::MainRedisInterface main_interface(xml_files_folder,
 													  config_file);
 
 	return 0;

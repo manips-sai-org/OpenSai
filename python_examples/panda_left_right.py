@@ -21,7 +21,7 @@ class RedisKeys:
   cartesian_task_current_position: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_position"
   cartesian_task_current_orientation: str = "opensai::controllers::Panda::cartesian_controller::cartesian_task::current_orientation"
   active_controller: str = "opensai::controllers::Panda::active_controller_name"
-  config_file_name: str = "::sai2-interfaces-webui::config_file_name"
+  config_file_name: str = "::sai-interfaces-webui::config_file_name"
 
 redis_keys = RedisKeys()
 

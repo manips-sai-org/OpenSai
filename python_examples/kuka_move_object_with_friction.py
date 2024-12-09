@@ -26,7 +26,7 @@ class RedisKeys:
     kuka_desired_force: str = "opensai::controllers::Kuka::eef_control::eef_task::desired_force"
     kuka_force_space_dimension: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_dimension"
     kuka_force_space_axis: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_axis"
-    config_file_name: str = "::sai2-interfaces-webui::config_file_name"
+    config_file_name: str = "::sai-interfaces-webui::config_file_name"
     object_pose = "opensai::sensors::Object::object_pose"
 
 redis_keys = RedisKeys()

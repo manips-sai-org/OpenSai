@@ -24,7 +24,7 @@ class RedisKeys:
   gripper_task_goal_position: str = "opensai::controllers::Panda::cartesian_controller::gripper_fingers::goal_position"
   object_current_position: str = "opensai::sensors::Box::object_pose"
   active_controller: str = "opensai::controllers::Panda::active_controller_name"
-  config_file_name: str = "::sai2-interfaces-webui::config_file_name"
+  config_file_name: str = "::sai-interfaces-webui::config_file_name"
 
 redis_keys = RedisKeys()
 
