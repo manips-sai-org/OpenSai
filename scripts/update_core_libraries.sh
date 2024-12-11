@@ -2,15 +2,15 @@
 
 # checkout master and pull latest changes on all core repositories
 cd core
-cd sai2-common
+cd sai-common
 git checkout master && git pull
 cd ..
 
-cd sai2-urdfreader
+cd sai-urdfreader
 git checkout master && git pull
 cd ..
 
-cd sai2-model
+cd sai-model
 git checkout master && git pull
 cd ..
 
@@ -18,19 +18,19 @@ cd chai3d
 git checkout master && git pull
 cd ..
 
-cd sai2-graphics
+cd sai-graphics
 git checkout master && git pull
 cd ..
 
-cd sai2-simulation
+cd sai-simulation
 git checkout master && git pull
 cd ..
 
-cd sai2-primitives
+cd sai-primitives
 git checkout master && git pull
 cd ..
 
-cd sai2-interfaces
+cd sai-interfaces
 git checkout master && git pull
 cd ..
 

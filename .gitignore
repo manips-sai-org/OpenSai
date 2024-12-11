@@ -39,4 +39,5 @@ log_files/
 config_folder/xml_config_files/webui_generated_file/
 
 # redis dump
-dump.rdbcs225a/
+dump.rdb
+**.DS_Store

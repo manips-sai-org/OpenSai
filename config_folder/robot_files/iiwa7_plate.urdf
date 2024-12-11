@@ -9,13 +9,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/base.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/base.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/base.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/base.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -28,13 +28,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link0.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link0.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link0.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link0.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -47,13 +47,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link1.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link1.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link1.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link1.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -66,13 +66,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link2.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link2.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link2.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link2.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -85,13 +85,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 3.1415926535897" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link3.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link3.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link3.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link3.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -104,13 +104,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link4.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link4.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link4.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link4.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -123,13 +123,13 @@
         <visual>
             <origin xyz="0 -0.06 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link5.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link5.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 -0.06 0" rpy="0 -0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link5.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link5.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>
@@ -142,13 +142,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link6.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link6.obj" scale="1 1 1" />
             </geometry>
         </visual>
         <!-- <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="${SAI2_MODEL_URDF_FOLDER}/iiwa7/meshes/link6.obj" scale="1 1 1" />
+                <mesh filename="${SAI_MODEL_URDF_FOLDER}/iiwa7/meshes/link6.obj" scale="1 1 1" />
             </geometry>
         </collision> -->
     </link>

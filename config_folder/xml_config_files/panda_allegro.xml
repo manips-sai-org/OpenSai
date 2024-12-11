@@ -1,8 +1,8 @@
-<redisConfiguration namespacePrefix="opensai" />
+<redisConfiguration namespacePrefix="sai" />
 
 <simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_panda_allegro.urdf" />
 
-<robotControlConfiguration robotName="Panda_Allegro" robotModelFile="${SAI2_MODEL_URDF_FOLDER}/panda/panda_arm_allegro_left.urdf">
+<robotControlConfiguration robotName="Panda_Allegro" robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_allegro_left.urdf">
 
 	<controller name="palm_hand_joints">
 

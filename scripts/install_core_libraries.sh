@@ -16,29 +16,29 @@ mkdir -p core
 cd core
 
 # clone all repositories if needed
-if [ ! -d "sai2-common" ]; then
-    git clone https://github.com/manips-sai-org/sai2-common.git
+if [ ! -d "sai-common" ]; then
+    git clone https://github.com/manips-sai-org/sai-common.git
 fi
-if [ ! -d "sai2-urdfreader" ]; then
-    git clone https://github.com/manips-sai-org/sai2-urdfreader.git
+if [ ! -d "sai-urdfreader" ]; then
+    git clone https://github.com/manips-sai-org/sai-urdfreader.git
 fi
-if [ ! -d "sai2-model" ]; then
-    git clone https://github.com/manips-sai-org/sai2-model.git
+if [ ! -d "sai-model" ]; then
+    git clone https://github.com/manips-sai-org/sai-model.git
 fi
 if [ ! -d "chai3d" ]; then
     git clone https://github.com/manips-sai-org/chai3d.git
 fi
-if [ ! -d "sai2-graphics" ]; then
-    git clone https://github.com/manips-sai-org/sai2-graphics.git
+if [ ! -d "sai-graphics" ]; then
+    git clone https://github.com/manips-sai-org/sai-graphics.git
 fi
-if [ ! -d "sai2-simulation" ]; then
-    git clone https://github.com/manips-sai-org/sai2-simulation.git
+if [ ! -d "sai-simulation" ]; then
+    git clone https://github.com/manips-sai-org/sai-simulation.git
 fi
-if [ ! -d "sai2-primitives" ]; then
-    git clone https://github.com/manips-sai-org/sai2-primitives.git
+if [ ! -d "sai-primitives" ]; then
+    git clone https://github.com/manips-sai-org/sai-primitives.git
 fi
-if [ ! -d "sai2-interfaces" ]; then
-    git clone https://github.com/manips-sai-org/sai2-interfaces.git
+if [ ! -d "sai-interfaces" ]; then
+    git clone https://github.com/manips-sai-org/sai-interfaces.git
 fi
 
 # echo "Cloned all repositories."
@@ -46,21 +46,21 @@ echo "${YELLOW}${BOLD}All repositories successfully cloned (or cloning was not n
 sleep 0.5
 
 # build all the repositories
-cd sai2-common
+cd sai-common
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-common successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-common successfully built${RESET}"
 sleep 0.5
 
-cd sai2-urdfreader
+cd sai-urdfreader
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-urdfreader successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-urdfreader successfully built${RESET}"
 sleep 0.5
 
-cd sai2-model
+cd sai-model
 cd rbdl
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-model successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-model successfully built${RESET}"
 sleep 0.5
 
 cd chai3d
@@ -68,29 +68,29 @@ mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 &&
 echo "${YELLOW}${BOLD}chai3d successfully built${RESET}"
 sleep 0.5
 
-cd sai2-graphics
+cd sai-graphics
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-graphics successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-graphics successfully built${RESET}"
 sleep 0.5
 
-cd sai2-simulation
+cd sai-simulation
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-simulation successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-simulation successfully built${RESET}"
 sleep 0.5
 
-cd sai2-primitives
+cd sai-primitives
 cd ruckig
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ../..
-echo "${YELLOW}${BOLD}sai2-primitives successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-primitives successfully built${RESET}"
 sleep 0.5
 
-cd sai2-interfaces
+cd sai-interfaces
 mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..
-echo "${YELLOW}${BOLD}sai2-interfaces successfully built${RESET}"
+echo "${YELLOW}${BOLD}sai-interfaces successfully built${RESET}"
 pip3 install -r ui/requirements.txt
-echo "${YELLOW}${BOLD}sai2-interfaces python requirements installed${RESET}"
+echo "${YELLOW}${BOLD}sai-interfaces python requirements installed${RESET}"
 sleep 0.5
 
 cd ..
-echo "${GREEN}${BOLD}All repositories successfully built. The main Opensai application can be built${RESET}"
+echo "${GREEN}${BOLD}All repositories successfully built. The main SAI application can be built${RESET}"
