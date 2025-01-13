@@ -1,0 +1,4 @@
+<redisConfiguration namespacePrefix="sai_tutorial" />
+
+<simvizConfiguration worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/1_pendulum_world.urdf">
+</simvizConfiguration>

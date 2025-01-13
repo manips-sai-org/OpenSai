@@ -71,9 +71,13 @@ ${SAI-COMMON_LIBRARIES}
 
 add_executable(SAI_main src/main.cpp)
 target_link_libraries(SAI_main ${SAI_LIBRARIES})
-
 set( CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/config_folder )
 add_definitions(-DCONFIG_FOLDER_PATH="${CONFIG_FOLDER_PATH}")
+
+add_executable(Tutorials_SAI tutorials/main_tutorials.cpp)
+target_link_libraries(Tutorials_SAI ${SAI_LIBRARIES})
+set( TUTORIALS_CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/tutorials/tuto_config_folder )
+add_definitions(-DTUTORIALS_CONFIG_FOLDER_PATH="${TUTORIALS_CONFIG_FOLDER_PATH}")
 
 file(CREATE_LINK ${SAI-INTERFACES_UI_DIR}
      ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/ui SYMBOLIC)

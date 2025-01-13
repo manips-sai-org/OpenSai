@@ -37,6 +37,7 @@ build/
 bin/
 log_files/
 config_folder/xml_config_files/webui_generated_file/
+tutorials/tuto_config_folder/xml_files/webui_generated_file/
 
 # redis dump
 dump.rdb
