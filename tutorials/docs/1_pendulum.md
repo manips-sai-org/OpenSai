@@ -431,5 +431,33 @@ Here is a proposed urdf file using several visual elements per link
 
 </robot>
 ```
-
 </details>
+
+Start the simulation and you will see:
+![](images/1_double_pendulum.png)
+
+Notice how the camera placement does not allow to see the full pendulum. Let's change it. You can make the camera position in the world file to `<position xyz="4.0 0.0 0.0" />` instead of `<position xyz="3.0 0.0 0.0" />` and you should now see:
+![](images/1_double_pendulum_new_cam.png)
+
+## Add an initial joint configuration
+SAI provides the ability to define initial joint configurations from the urdf file directy by using the `callibration` tag of urdf joints (which is not intended for that purpose when using an irdf file with systems other that SAI).
+You can give a value in radians using the rising attribute, or in degrees using the falling attribute. For prismatic joints, thr rising or falling field can be used and the value is in meters.
+
+For example, add this to the first revolute joint `<calibration rising="0.5" />` and this to the second `<calibration falling="35.0" />` and the double pendulum will now start in the following configuration when starting the simulation
+
+![](images/1_initial_config.png)
+
+## Joint limits and damping
+You can modify the joint limits in the urdf file directly. The simulation will by default enforce joint limits on the robots. The current joint limits for the two revolute joints are `-2.967` and `2.967` for the min position and max position respectively. Change them to `-0.967` and `0.967`, start the simulation and try to drag the pendulum to one side, you will see the simulation blocking the joint to their limits:
+![](images/1_lower_joint_limits.png)
+
+You can tell the simulation to not enforce the joint limits by adding the attribute `enableJointLimits="false"` next to `enableGravityCompensation="false"` in the xml config file in the `simParameters` element. Try:
+
+```
+<simParameters enableGravityCompensation="false"
+	enableJointLimits="false" />
+```
+
+and you will see that the simulation does not enforce the joint limits anymore.
+
+You can also add joint damping by adding to each joint a new tag: `<dynamics damping="0.5"/>`. You can select whichever positive calue for the joint damping per joint. Add a damping of 0.5 to both revolute joints in the urdf file, start the simulation and you should see the oscillations slowly stop.
