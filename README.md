@@ -58,6 +58,17 @@ If using the script, you will still need to manually open a web browser and navi
 From the UI, you can load any config file from the `config_folder/xml_config_files` folder and interact with the robot controllers. Files in other folders will not work.
 You can make new applications by making new config files and placing them in the `config_folder/xml_config_files` folder.
 
+### Using real hardware instead of simulated robots
+When using real hardware, make sure to use a config file that does not launch a simulation (either put the simvix in vizOnly mode, or don't have a simviz configuration at all in the config file). The controllers can interact with any robot that provides the required inputs via redis (joint angles, joint velocities, and mass matrix if possible), and reads the command torques via redis. Make sure your robot program uses the same redis keys as the SAI controller.
+
+__IMPORTANT__: Make sure to set the `getMassMatrixFromRedis` attribute to `true` in the config file (`robotControlConfiguration` tag) when using real hardware that publishes the mass matrix to redis, and if you don't have a good inertial model in your urdf file for the robot.
+
+For convenience, we provide redis drivers for the following hardware, that should be useable immediatly with SAI controllers:
+- Franka robots (FR3 and Panda): [FrankaPanda repository](https://github.com/manips-sai/FrankaPanda)
+- Flexiv robots (Internal API not provided, Rizon4 and Rizon4s supported): [FlexivRizonRedisDriver repository](https://github.com/manips-sai-org/FlexivRizonRedisDriver)
+- ATI Gamma 6 axis Force/Torque sensor: [ATIGamma_redis_driver repository](https://github.com/manips-sai-org/ATIGamma_redis_driver)
+- Haptic devices compatible with chai3d (all ForceDimension devices and many more): [chaiHapticDeviceRedisDriver repository](https://github.com/manips-sai-org/chaiHapticdeviceRedisDriver)
+
 ## Interacting with the controller using Redis and Python
 
 It is possible to interact with the controllers and simulation directly via Redis, without going through the webui. The redis values are string, and use json representation for vectors/arrays and complex data structures.
