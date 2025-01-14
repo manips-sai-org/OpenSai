@@ -44,7 +44,7 @@ function ctrl_c() {
 sleep 1
 
 # Launch interfaces server using tmux
-tmux new-session -d -s interfaces_server "python3 bin/ui/server.py config_folder/xml_config_files/webui_generated_file/webui.html"
+tmux new-session -d -s interfaces_server "python3 bin/ui/server.py tutorials/tuto_config_folder/xml_files/webui_generated_file/webui.html"
 
 # Wait for SAI main program to quit and stop redis
 wait $SAI_MAIN_PID

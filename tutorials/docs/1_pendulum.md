@@ -461,3 +461,100 @@ You can tell the simulation to not enforce the joint limits by adding the attrib
 and you will see that the simulation does not enforce the joint limits anymore.
 
 You can also add joint damping by adding to each joint a new tag: `<dynamics damping="0.5"/>`. You can select whichever positive calue for the joint damping per joint. Add a damping of 0.5 to both revolute joints in the urdf file, start the simulation and you should see the oscillations slowly stop.
+
+## Adding objects to the world
+
+You can add objects in the world file. There are 2 types of objects:
+- Static objects (defined by the html tag `<static_object>`) are objects that cannot move
+- Dynamic objects (defined by the html tag `<dynamic_object>`) are objects that can move in 6 dimensions in space (translations and rotations).
+
+Both these objects can have an origin tag, the dynamic object must have an inertial tag, and can have a visual and collision tag. Let us add a floor to the world below the pendulum. You can add the following to the world file:
+
+```
+<static_object name="Floor">
+	<origin xyz="0.0 0.0 -2.25" rpy="0 0 0" />
+	<visual>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+		<geometry>
+			<box size="5.0 5.0 0.1" />
+		</geometry>
+		<material name="material_blue">
+			<color rgba="0.0 0.1 0.5 1.0" />
+		</material>
+	</visual>
+	<collision>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+		<geometry>
+			<box size="5.0 5.0 0.1" />
+		</geometry>
+	</collision>
+</static_object>
+```
+
+Now try to add a box of side 15cm as a dynamic object to the world, initially at the location `0.0 0.7 -2.0`. Don't forget the inertial properties.
+
+<details>
+<summary>Solution</summary>
+
+Add the following to the world file
+```
+<dynamic_object name="Box">
+	<origin xyz="0.0 0.7 -2.0" rpy="0 0 0" />
+	<inertial>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+		<mass value="1" />
+		<inertia ixx="0.1" iyy="0.1" izz="0.1" ixy="0" ixz="0" iyz="0" />
+	</inertial>
+	<visual>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.15 0.15 0.15" />
+		</geometry>
+		<material name="material_green">
+			<color rgba="0.0 0.5 0.1 1.0" />
+		</material>
+	</visual>
+	<collision>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.15 0.15 0.15" />
+		</geometry>
+	</collision>
+</dynamic_object>
+```
+</details>
+
+Start the simulation, and you will see the box falling on the floor.
+![](images/1_floor_box.png)
+You can interact with the box using right click and drag it around. Use the mouse wheel to pull the box out of the screen or push it inside the screen.
+
+You will notice that the box goes through the pendulum. This is because there are no collision elements to the robot links in the urdf. You can add them and test the interactions.
+
+## Using the webui
+
+Open a web browser and navigate to localhost:8000. If you see a message saying unable to connect, you may have to start the webui manually from the root SAI folder:
+
+```
+python bin/ui/server.py tutorials/tuto_config_folder/xml_files/webui_generated_file/webui.html
+```
+
+You should see the following:
+![](images/1_webui.png)
+
+You can explore the different exposed simulation parameters for the pendulum and the box. The details are explained in the SAI documentation.
+
+## Plotting the joint angles in real time
+
+Open a new online plot tab using the blue bitton on top of the webui and you will see a new tab appearing. In the search box marked 'select y key' look for the pendulum joint positions key called `sai_tutorials::sensors::pendulum::joint_positions`. You can type joint_positions in the search bar and it will appear. Press the start button and the plot starts appearing.
+
+![](images/1_online_plot.png)
+
+## Recording and plotting the joint angles offline
+
+You can also record data and plot it later. Click the SimViz logging button to turn it to ON on the left of the webui interface, and perturbate the pendulum. After a few seconds, press it again to stop the logging. You can now open the offline CSV plotter using the green button on the top of the webui.
+
+![](images/1_offline_plotter.png)
+
+Click the `Load CSV` button and navigate the the `log_files/simviz` folder, and open the `pendulum_simviz__<timestamp>.csv` file. Close the data you want to plot and click the button to open a new browser window with the graph.
+
+You can specify the logging data frequency, folder path and other options in the xml config file. See the full documentation for more information.
