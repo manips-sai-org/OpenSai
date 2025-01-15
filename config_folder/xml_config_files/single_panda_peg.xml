@@ -16,9 +16,6 @@
 
 <robotControlConfiguration robotName="Panda"
 	robotModelFile="${ROBOT_FILES_FOLDER}/panda_arm_peg.urdf">
-	<baseFrame xyz="0 0 0"
-		rpy="0 0 0" />
-	<worldGravity xyz="0 0 -9.81" />
 
 	<logger logFolderName="log_files/single_panda_peg/controllers"
 		enabledAtStartup="true"

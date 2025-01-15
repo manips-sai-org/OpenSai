@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<world name="tuto_1_world" gravity="0.0 0.0 -9.81">
+
+	<robot name="pendulum">
+		<model dir="${TUTORIALS_ROBOT_FILES_FOLDER}" path="pendulum.urdf" name="pendulum" />
+	</robot>
+
+	<light name="light1" type="directional">
+		<position xyz="2.0 -2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.0" />
+	</light>
+
+	<light name="light2" type="directional">
+		<position xyz="2.0 2.0 2.0" />
+		<lookat xyz="0.0 0.0 0.0" />
+	</light>
+
+	<camera name="camera_fixed">
+		<position xyz="3.0 0.0 0.0" />
+		<vertical xyz="0.0 0.0 1.0" />
+		<lookat xyz="0.0 0.0 -0.5" />
+	</camera>
+
+</world>

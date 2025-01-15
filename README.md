@@ -1,5 +1,9 @@
 # SAI
 
+SAI (for Simulation and Active Interfaces) is a Software Framework for robot simulation and control. It provides a simulator, graphics visualizer, control library and interfaces to interact with those. The control library is aimed at controlling torque controlled robots, so the output of the controller is a vector of command joint torques.
+
+The different part of the framework communicate between each other using redis as a middleware.
+
 ## Install Instructions
 
 Start by installing the dependencies:
@@ -19,6 +23,15 @@ Finally, build the SAI_main application (which will be located in the bin folder
 ```
 sh scripts/build_SAI_main.sh
 ```
+
+
+## Tutorials
+We provide tutorials to guide new users towards most of the basic functions.
+- The [first tutorial](tutorials/docs/1_pendulum.md) focuses on the simulation and graphics options, how to make a robot model, world file and config file, and how to use the UI.
+- The [second tutorial](tutorials/docs/2_panda.md) focuses on the controllers. How to control a robot arm, and what are the different options and ways of interacting with the controller
+- The [third tutorial](tutorials/docs/3_panda_haptic.md) shows how to add a haptic controller to control a robot end effector
+
+We also provide other pre built examples and some documentation (see below).
 
 ## Usage Instructions
 
@@ -49,6 +62,19 @@ If using the script, you will still need to manually open a web browser and navi
 From the UI, you can load any config file from the `config_folder/xml_config_files` folder and interact with the robot controllers. Files in other folders will not work.
 You can make new applications by making new config files and placing them in the `config_folder/xml_config_files` folder.
 
+### Using real hardware instead of simulated robots
+When using real hardware, make sure to use a config file that does not launch a simulation (either put the simviz in vizOnly mode, or don't have a simviz configuration at all in the config file). The controllers can interact with any robot that provides the required inputs via redis (joint angles, joint velocities, and mass matrix if possible), and reads the command torques via redis. Make sure your robot program uses the same redis keys as the SAI controller.
+
+__IMPORTANT__: Make sure to know if your robot driver performs gravity compensation, and if it publishes the mass matrix to redis, and configure your controller in function:
+- If you want a controller to perform gravity compensation, set the attribute `gravityCompensation="true"` in the corresponding `<controller>` tag. The value is false by default if omitted because the robots drivers we use with SAI perform gravity compensation already.
+- If you want your controller to compute the mass matrix from the urdf file instead of getting it from the robot driver, Make sure to set the `getMassMatrixFromRedis` attribute to `false` in the config file (`robotControlConfiguration` tag). It is false by default if omitted because the robot drivers we use with SAI publish it, and the urdf models don't have a good estimate of the inertial parameters.
+
+For convenience, we provide redis drivers for the following hardware, that should be useable immediatly with SAI controllers:
+- Franka robots (FR3 and Panda): [FrankaPanda repository](https://github.com/manips-sai/FrankaPanda)
+- Flexiv robots (Internal API not provided, Rizon4 and Rizon4s supported): [FlexivRizonRedisDriver repository](https://github.com/manips-sai-org/FlexivRizonRedisDriver)
+- ATI Gamma 6 axis Force/Torque sensor: [ATIGamma_redis_driver repository](https://github.com/manips-sai-org/ATIGamma_redis_driver)
+- Haptic devices compatible with chai3d (all ForceDimension devices and many more): [chaiHapticDeviceRedisDriver repository](https://github.com/manips-sai-org/chaiHapticdeviceRedisDriver)
+
 ## Interacting with the controller using Redis and Python
 
 It is possible to interact with the controllers and simulation directly via Redis, without going through the webui. The redis values are string, and use json representation for vectors/arrays and complex data structures.
@@ -78,6 +104,24 @@ python3 python_examples/panda_left_right.py
 
 For a detailled list of all the inputs, parameters and outputs of the controller and simulation, see the documentation below.
 
+## List of examples
+We provide several examples in the `config_folder/xml_config_files` folder. To run one of those exammples, you can run
+```
+sh scripts/launch.sh <config_file_name>.xml
+```
+
+You can also provide the full absolute or relatove path to the config file you want to use.
+
+Some of these examples also provide an associated python script example to perform certain actions. Here is the list of the examples with a quick description:
+
+- `single_panda.xml`. It is the default example. It simulates a panda arm on a floor with a box dynamic object. The panda has a cartesian controller with two tasks (6dof motion force task and joint task in the nullspace) and a joint controller. You can use the python script `panda_left_right.py` to control the robot to move left and right successively.
+- `single_panda_peg.xml`. The only difference is the end effector of the robot that was changed to a peg.
+- `single_panda_gripper.xml`. The panda has the gripper attached. The controller had a gripper finger task which is a joint task to move the fingers of the grippers. You can use the python script `panda_gripper_pick_place.py` to start a state machine that will pick the orange cube and place it on the other table.
+- `panda_allegro.xml`. The panda has an allegro hand attached. The cartesian controller has a partial joint task to control the finger joints and the motion force task controls the palm of the hand.
+- `double_panda.xml`. Two panda next to each other are simulated and controlled.
+- `kuka_object_friction.xml`. A kuka robot is simulated and controlled. It has a flat end effector, and the world has a table and yellow disk that can slide on the table. you can use the python script `kuka_move_object_with_friction.py` to start a state machine that will move the object by pressing on it against the table and move it towards the robot.
+- `kuka_plate_table.xml`. A kuka robot and a table that can tilt in the x-y plane (implemented as a robot). You can use the python script `kuka_surface_alignemnt.py` to start a state machine that will pivot the table and control the kuka robot to perform surface-surface alignemnt.
+
 ## High level overview of the controllers
 The controllers are defined as a sequence of task and are implemented as a hierarchical controller with dynamic decoupling between the different task levels. On each task, the controller can implement task level dynamic decoupling or not. When dynamic decoupling is enabled, the operational space inertia matrix is used in the control law to control the task as a unit mass system, if it is disabled, the task space mass matrix is not used at the task control level, and the task controller is aparented to an impedance controller. The tasks support velocity saturation, which in essence saturates the task error (and therefore the task force) in order to limit the velocity. They also implement internal online trajectory generation on the task DoFs using the [Ruckig](https://ruckig.com) library for motion control. When internal otg is enabled, the goal position and velocity will be used as the input of ruckig, which outputs the desired position used in the PID controller. When internal otg is off, the input of the PID controller is directly the goal position, velocity and acceleration.
 
@@ -100,7 +144,6 @@ SAI offers the possibility to log data from the controllers and simulation. The 
 See [here](docs/data_logging.md) for a list of all the logged data
 
 ## Documentation
-
 SAI main application is an instance of the MainRedisInterface application from the [sai-interfaces](https://github.com/manips-sai-org/sai-interfaces) library. You can interact with the controller and simulation from the webui on the browser. For an overview of the ui and how to use it, see [this page](https://github.com/manips-sai-org/sai-interfaces/blob/master/docs/ui_overview.md). For details on the config files, how to use them and how to make your own for your application, see [here](https://github.com/manips-sai-org/sai-interfaces/blob/master/docs/config_files_details.md).
 
 The following pages list all the redis keys generated by the main SAI program and what they correspond to.
@@ -108,7 +151,6 @@ The following pages list all the redis keys generated by the main SAI program an
 - [List of interactive config parameters](docs/list_of_runtime_parameters.md) (to change the parametrization at runtime)
 
 ## Note on supported graphics files
-
 SAI uses [chai3d](https://www.chai3d.org) under the hood for graphics rendering. The rendering supports visuals defined by primitive shapes (box, shpere, cylinder) and the following mesh file formats:
 - obj (with associated mtl files)
 - 3ds
@@ -137,3 +179,6 @@ The core libraries are installed for the current OS session user, and the main a
 ```
 sh scripts/uninstall.sh
 ```
+
+## License
+Currently pending licensing. PLEASE DO NOT DISTRIBUTE.
