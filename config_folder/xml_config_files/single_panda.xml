@@ -16,9 +16,6 @@
 
 <robotControlConfiguration robotName="Panda"
 	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_sphere.urdf">
-	<baseFrame xyz="0 0 0"
-		rpy="0 0 0" />
-	<worldGravity xyz="0 0 -9.81" />
 
 	<logger logFolderName="log_files/single_panda/controllers"
 		enabledAtStartup="true"

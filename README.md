@@ -104,6 +104,24 @@ python3 python_examples/panda_left_right.py
 
 For a detailled list of all the inputs, parameters and outputs of the controller and simulation, see the documentation below.
 
+## List of examples
+We provide several examples in the `config_folder/xml_config_files` folder. To run one of those exammples, you can run
+```
+sh scripts/launch.sh <config_file_name>.xml
+```
+
+You can also provide the full absolute or relatove path to the config file you want to use.
+
+Some of these examples also provide an associated python script example to perform certain actions. Here is the list of the examples with a quick description:
+
+- `single_panda.xml`. It is the default example. It simulates a panda arm on a floor with a box dynamic object. The panda has a cartesian controller with two tasks (6dof motion force task and joint task in the nullspace) and a joint controller. You can use the python script `panda_left_right.py` to control the robot to move left and right successively.
+- `single_panda_peg.xml`. The only difference is the end effector of the robot that was changed to a peg.
+- `single_panda_gripper.xml`. The panda has the gripper attached. The controller had a gripper finger task which is a joint task to move the fingers of the grippers. You can use the python script `panda_gripper_pick_place.py` to start a state machine that will pick the orange cube and place it on the other table.
+- `panda_allegro.xml`. The panda has an allegro hand attached. The cartesian controller has a partial joint task to control the finger joints and the motion force task controls the palm of the hand.
+- `double_panda.xml`. Two panda next to each other are simulated and controlled.
+- `kuka_object_friction.xml`. A kuka robot is simulated and controlled. It has a flat end effector, and the world has a table and yellow disk that can slide on the table. you can use the python script `kuka_move_object_with_friction.py` to start a state machine that will move the object by pressing on it against the table and move it towards the robot.
+- `kuka_plate_table.xml`. A kuka robot and a table that can tilt in the x-y plane (implemented as a robot). You can use the python script `kuka_surface_alignemnt.py` to start a state machine that will pivot the table and control the kuka robot to perform surface-surface alignemnt.
+
 ## High level overview of the controllers
 The controllers are defined as a sequence of task and are implemented as a hierarchical controller with dynamic decoupling between the different task levels. On each task, the controller can implement task level dynamic decoupling or not. When dynamic decoupling is enabled, the operational space inertia matrix is used in the control law to control the task as a unit mass system, if it is disabled, the task space mass matrix is not used at the task control level, and the task controller is aparented to an impedance controller. The tasks support velocity saturation, which in essence saturates the task error (and therefore the task force) in order to limit the velocity. They also implement internal online trajectory generation on the task DoFs using the [Ruckig](https://ruckig.com) library for motion control. When internal otg is enabled, the goal position and velocity will be used as the input of ruckig, which outputs the desired position used in the PID controller. When internal otg is off, the input of the PID controller is directly the goal position, velocity and acceleration.
 

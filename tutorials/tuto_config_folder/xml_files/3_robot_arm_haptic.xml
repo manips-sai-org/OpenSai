@@ -1,0 +1,47 @@
+<redisConfiguration namespacePrefix="sai" />
+
+<simvizConfiguration
+	worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/2_robot_arm_world.urdf">
+	<logger logFolderName="log_files/tuto_3/simviz"/>
+
+	<forceSensor robotOrObjectName="Panda"
+		linkName="end-effector"
+		filterCutoff="5.0" />
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="Panda"
+	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
+
+	<logger logFolderName="log_files/tuto_3/controllers"/>
+
+	<controller name="cartesian_controller">
+		<motionForceTask name="cartesian_task"
+			linkName="end-effector">
+			<otg type="disabled" />
+		</motionForceTask>
+
+		<jointTask name="joint_task">
+			<otg type="disabled" />
+		</jointTask>
+	</controller>
+</robotControlConfiguration>
+
+<hapticDeviceControlConfiguration controlMode="impedance"
+	switchFunction="orientationControl"
+	switchUsageType="hold"
+	orientationTeleopEnabled="false">
+
+	<controlledRobotTask robotName="Panda"
+		controllerName="cartesian_controller"
+		taskName="cartesian_task" />
+
+	<logger logFolderName="log_files/tuto_3/haptic_controllers" />
+
+	<impedanceMode>
+		<scalingFactors linear="1.0"/>
+		<forceFeedback reductionFactorForce="0.1"/>
+	</impedanceMode>
+
+	<planeGuidance enabled="true" />
+
+</hapticDeviceControlConfiguration>

@@ -11,8 +11,8 @@ if [ "$#" -eq 1 ]; then
 		config_file="1_pendulum.xml"
 	elif [ "$1" -eq "2" ]; then
 		config_file="2_robot_arm.xml"
-	# elif [ "$1" -eq "3" ]; then
-	# 	config_file="3_robot_arm_haptic.xml"
+	elif [ "$1" -eq "3" ]; then
+		config_file="3_robot_arm_haptic.xml"
 	else
 		echo "Invalid tutorial number. Please enter 1, 2 or 3."
 		exit 1
