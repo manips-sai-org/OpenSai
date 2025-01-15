@@ -189,14 +189,14 @@
 				<cylinder radius="0.015" length="0.08"/>
 			</geometry>
 			<material name="material_red">
-				<color rgba="0.2 0.2 0.2 1.0" />
+				<color rgba="1.0 1.0 1.0 1.0" />
 			</material>
 		</visual>
-		<collision>
+		<!-- <collision>
 			<geometry>
 				<cylinder radius="0.015" length="0.08"/>
 			</geometry>
-		</collision>
+		</collision> -->
 	</link>
 
 

@@ -66,6 +66,85 @@ def createBlocks(grid: list[list[str]] ) -> list[tuple[int, int, int, int]]:
 
     return blockList
 
+def FindShortestPath(grid: list[list[str]], start: tuple[int, int]) -> list[str]:
+
+    optimalPath = [] # list of up down left right
+
+    explore = [["" for _ in range(len(grid[0]))] for _ in range(len(grid))]
+
+    bfs = []
+    bfs.append(start)
+
+    final = (-1,-1)
+
+    while len(bfs) > 0:
+
+        r, c = bfs.pop()
+
+        if grid[r][c] == "d":
+            final = (r,c)
+            break
+
+        if r + 1 < len(grid) and explore[r+1][c] == "" and grid[r+1][c] != "x":
+            explore[r+1][c] = "down"
+            bfs.append((r+1, c))
+
+        if r - 1 >= 0 and explore[r-1][c] == "" and grid[r-1][c] != "x":
+            explore[r-1][c] = "up"
+            bfs.append((r-1, c))
+
+        if c+1 < len(grid[0]) and explore[r][c+1] == "" and grid[r][c+1] != "x":
+            explore[r][c+1] = "right"
+            bfs.append((r, c+1))
+
+        if c - 1 >= 0 and explore[r][c-1] == "" and grid[r][c-1] != "x":
+            explore[r][c-1] = "left"
+            bfs.append((r, c-1))
+
+    if final == (-1,-1):
+        return optimalPath
+    
+    row, col = final
+
+    while (row, col) != start:
+        if explore[row][col] == "down":
+            row = row -1
+            optimalPath.insert(0,"down")
+        elif explore[row][col] == "up":
+            row = row +1
+            optimalPath.insert(0, "up")
+        elif explore[row][col] == "left":
+            col = col +1
+            optimalPath.insert(0, "left")
+        elif explore[row][col] == "right":
+            col = col -1
+            optimalPath.insert(0, "right")
+
+    return optimalPath
+
+def CompressOptimalPath(optimalPath: list[str], distance: int) ->  list[str]:
+
+    runningCount = 1
+    compressedList = []
+    direction = "left"
+
+    for i in range(len(optimalPath) -1):
+
+        direction = optimalPath[i]
+
+        if runningCount == distance:
+            compressedList.append((direction, distance))
+            runningCount = 1
+        elif optimalPath[i] == optimalPath[i+1]:
+            runningCount += 1
+        else:
+            compressedList.append((direction, runningCount))
+            runningCount = 1
+
+    compressedList.append((optimalPath[-1], runningCount))
+
+    return compressedList
+
 #blocks are defined by center point, and lower height
 def createBlocksTemplate(blockList: list[tuple[int, int, int, int]], maze_dims: tuple[int, int],  pos: tuple[float, float, float],  scale: tuple[float, float, float], color: str) -> str:
 

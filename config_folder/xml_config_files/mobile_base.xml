@@ -1,7 +1,9 @@
 <simvizConfiguration redisPrefix="opensai"
-	worldFilePath="${WORLD_FILES_FOLDER}/world_mobile_base.urdf">
+	worldFilePath="${WORLD_FILES_FOLDER}/world_mobile_base.urdf"
+	mode="simviz">
 
-	<simParameters frictionCoefficient="0.5" />
+	<simParameters speedupFactor="3.0"
+		frictionCoefficient="0.5"/>
 
 	<logger logFolderName="log_files/single_panda/simviz"
 		enabledAtStartup="true"

@@ -17,7 +17,7 @@ maze: [["x", "", "x", "x", "x", "x", "x", "x",  "x", "x", "x"],
       ["x", "", "x", "", "", "", "", "",  "x", "", "x"],
       ["x", "x", "x", "x", "x", "x", "x", "x",  "x", "d", "x"]]
 
-robotOrigin: [-1,-1, 0] # enter float coordinates of robots center
+robotOrigin: [-0.5,-0.5, 0] # enter float coordinates of robots center
 dogOrigin: [0.9, -0.9, 0.08] # enter float coordinates of robots center
 
 mazePos: [0, 0, 0.4] # enter centered coordinates
@@ -29,6 +29,7 @@ border: 0.1
 topthick: 0.1
 
 startPos: [-0.30, -0.16, 0.6] # enter start coordinates
+endPos: [0.3, .16, 0.6]
 
 
 

@@ -3,7 +3,7 @@
 <world name="test-world" gravity="0.0 0.0 -9.81">
 
     <robot name="Panda">
-        <origin xyz="-1 -1 0" rpy="0 0 0" />
+        <origin xyz="-0.5 -0.5 0" rpy="0 0 0" />
         <model dir="${ROBOT_FILES_FOLDER}" path="mobile_base.urdf" name="panda" />
     </robot>
 
