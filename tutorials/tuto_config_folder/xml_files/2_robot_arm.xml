@@ -1,0 +1,27 @@
+<redisConfiguration namespacePrefix="sai" />
+
+<simvizConfiguration worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/2_robot_arm_world.urdf">
+	<logger logFolderName="log_files/tuto_2/simviz" />
+
+	<forceSensor robotOrObjectName="Panda"
+		linkName="end-effector"
+		filterCutoff="5.0" />
+</simvizConfiguration>
+
+<robotControlConfiguration robotName="Panda"
+	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
+
+	<controller name="cartesian_controller">
+		<motionForceTask name="motion_force_task"
+			linkName="end-effector">
+		</motionForceTask>
+		<jointTask name="joint_task">
+		</jointTask>
+	</controller>
+
+	<controller name="joint_controller">
+		<jointTask name="joint_task">
+		</jointTask>
+	</controller>
+
+</robotControlConfiguration>

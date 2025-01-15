@@ -107,7 +107,7 @@ The world file contains robot models, objects (there are no objects presents in 
 * The SAI configuration file is `tutorials/tuto_config_folder/xml_files/1_pendulum.xml`. For now, it is very simple:
 
 ```
-<redisConfiguration namespacePrefix="sai_tutorial" />
+<redisConfiguration namespacePrefix="sai" />
 
 <simvizConfiguration worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/1_pendulum_world.urdf">
 </simvizConfiguration>
@@ -545,7 +545,7 @@ You can explore the different exposed simulation parameters for the pendulum and
 
 ## Plotting the joint angles in real time
 
-Open a new online plot tab using the blue bitton on top of the webui and you will see a new tab appearing. In the search box marked 'select y key' look for the pendulum joint positions key called `sai_tutorials::sensors::pendulum::joint_positions`. You can type joint_positions in the search bar and it will appear. Press the start button and the plot starts appearing.
+Open a new online plot tab using the blue bitton on top of the webui and you will see a new tab appearing. In the search box marked 'select y key' look for the pendulum joint positions key called `sai::sensors::pendulum::joint_positions`. You can type joint_positions in the search bar and it will appear. Press the start button and the plot starts appearing.
 
 ![](images/1_online_plot.png)
 
@@ -558,3 +558,6 @@ You can also record data and plot it later. Click the SimViz logging button to t
 Click the `Load CSV` button and navigate the the `log_files/simviz` folder, and open the `pendulum_simviz__<timestamp>.csv` file. Close the data you want to plot and click the button to open a new browser window with the graph.
 
 You can specify the logging data frequency, folder path and other options in the xml config file. See the full documentation for more information.
+
+## Next tutorial
+[Controlling a robot arm](2_robot_arm.md)

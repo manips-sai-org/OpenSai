@@ -1,5 +1,9 @@
 # SAI
 
+SAI (for Simulation and Active Interfaces) is a Software Framework for robot simulation and control. It provides a simulator, graphics visualizer, control library and interfaces to interact with those. The control library is aimed at controlling torque controlled robots, so the output of the controller is a vector of command joint torques.
+
+The different part of the framework communicate between each other using redis as a middleware.
+
 ## Install Instructions
 
 Start by installing the dependencies:
@@ -59,9 +63,11 @@ From the UI, you can load any config file from the `config_folder/xml_config_fil
 You can make new applications by making new config files and placing them in the `config_folder/xml_config_files` folder.
 
 ### Using real hardware instead of simulated robots
-When using real hardware, make sure to use a config file that does not launch a simulation (either put the simvix in vizOnly mode, or don't have a simviz configuration at all in the config file). The controllers can interact with any robot that provides the required inputs via redis (joint angles, joint velocities, and mass matrix if possible), and reads the command torques via redis. Make sure your robot program uses the same redis keys as the SAI controller.
+When using real hardware, make sure to use a config file that does not launch a simulation (either put the simviz in vizOnly mode, or don't have a simviz configuration at all in the config file). The controllers can interact with any robot that provides the required inputs via redis (joint angles, joint velocities, and mass matrix if possible), and reads the command torques via redis. Make sure your robot program uses the same redis keys as the SAI controller.
 
-__IMPORTANT__: Make sure to set the `getMassMatrixFromRedis` attribute to `true` in the config file (`robotControlConfiguration` tag) when using real hardware that publishes the mass matrix to redis, and if you don't have a good inertial model in your urdf file for the robot.
+__IMPORTANT__: Make sure to know if your robot driver performs gravity compensation, and if it publishes the mass matrix to redis, and configure your controller in function:
+- If you want a controller to perform gravity compensation, set the attribute `gravityCompensation="true"` in the corresponding `<controller>` tag. The value is false by default if omitted because the robots drivers we use with SAI perform gravity compensation already.
+- If you want your controller to compute the mass matrix from the urdf file instead of getting it from the robot driver, Make sure to set the `getMassMatrixFromRedis` attribute to `false` in the config file (`robotControlConfiguration` tag). It is false by default if omitted because the robot drivers we use with SAI publish it, and the urdf models don't have a good estimate of the inertial parameters.
 
 For convenience, we provide redis drivers for the following hardware, that should be useable immediatly with SAI controllers:
 - Franka robots (FR3 and Panda): [FrankaPanda repository](https://github.com/manips-sai/FrankaPanda)
