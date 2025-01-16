@@ -1,0 +1,36 @@
+FROM ros:humble
+SHELL ["/bin/bash", "-c"]
+
+# Install Apt Packages
+RUN apt-get update && apt-get install -y \
+    git \
+    apt-utils \
+    nano \
+    locales \
+    cmake \
+    build-essential \
+    cmake \
+    libeigen3-dev \
+    libtinyxml2-dev \
+    libgtest-dev \
+    python3-pip \
+	libasound2-dev \
+    libusb-1.0.0-dev \
+    freeglut3-dev \
+    xorg-dev \
+    libglew-dev \
+    libglfw3-dev \
+	libopenal-dev \
+    redis \
+    libhiredis-dev \
+    libjsoncpp-dev \
+    tmux \
+    && rm -rf /var/lib/apt/lists/*
+RUN locale-gen en_US.UTF-8
+SHELL ["/bin/bash", "-c"]
+
+RUN mkdir /SAI
+COPY ./ /SAI
+RUN sh /SAI/scripts/install_core_libraries.sh
+WORKDIR /SAI
+RUN mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..
