@@ -180,5 +180,20 @@ The core libraries are installed for the current OS session user, and the main a
 sh scripts/uninstall.sh
 ```
 
+## Docker Usage
+
+1. [Install Docker](https://docs.docker.com/engine/install/ubuntu/) on your host system.
+2. Enable Docker GUIs 
+```
+xhost +local:docker
+```
+3. Run SAI using docker compose 
+```
+git clone https://github.com/manips-sai-org/SAI.git
+cd SAI
+docker compose run SAI
+```
+
+
 ## License
 Currently pending licensing. PLEASE DO NOT DISTRIBUTE.
