@@ -1,4 +1,4 @@
-# List of inputs and outputs for SAI simviz and controllers
+# List of inputs and outputs for OpenSai simviz and controllers
 
 There are 2 types of controller inputs:
 - Sensor data for the feedback control loops

@@ -1,4 +1,4 @@
-<redisConfiguration namespacePrefix="sai" />
+<redisConfiguration namespacePrefix="opensai" />
 
 <simvizConfiguration worldFilePath="${WORLD_FILES_FOLDER}/world_kuka_tiltable_table.urdf">
 

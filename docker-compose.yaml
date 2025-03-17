@@ -6,7 +6,7 @@
 
 services:
 ###############################
-## Open SAI   
+## Open OpenSai   
 ###############################
 
   redis_server:
@@ -17,7 +17,7 @@ services:
     network_mode: host
     command: redis-server
 
-  SAI:
+  OpenSai:
     image: stanfordroboticscenter/sai
     build:
       context: ./
@@ -33,4 +33,4 @@ services:
       - redis_server
     network_mode: host
     privileged: true
-    command: sh /SAI/scripts/launch.sh
+    command: sh /OpenSai/scripts/launch.sh

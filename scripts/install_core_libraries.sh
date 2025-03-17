@@ -93,4 +93,4 @@ echo "${YELLOW}${BOLD}sai-interfaces python requirements installed${RESET}"
 sleep 0.5
 
 cd ..
-echo "${GREEN}${BOLD}All repositories successfully built. The main SAI application can be built${RESET}"
+echo "${GREEN}${BOLD}All repositories successfully built. The main OpenSai application can be built${RESET}"

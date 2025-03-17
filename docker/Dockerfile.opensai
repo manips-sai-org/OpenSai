@@ -29,8 +29,8 @@ RUN apt-get update && apt-get install -y \
 RUN locale-gen en_US.UTF-8
 SHELL ["/bin/bash", "-c"]
 
-RUN mkdir /SAI
-COPY ./ /SAI
-RUN sh /SAI/scripts/install_core_libraries.sh
-WORKDIR /SAI
+RUN mkdir /OpenSai
+COPY ./ /OpenSai
+RUN sh /OpenSai/scripts/install_core_libraries.sh
+WORKDIR /OpenSai
 RUN mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4 && cd ..

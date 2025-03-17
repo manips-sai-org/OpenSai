@@ -1,4 +1,4 @@
-# List of interactive config parameters for SAI simviz and controllers
+# List of interactive config parameters for OpenSai simviz and controllers
 
 A lot of the controllers and simviz parameters defined in the configuration file can be changed at runtime via redis. We will list and describe all of them here.
 

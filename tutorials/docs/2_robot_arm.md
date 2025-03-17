@@ -1,9 +1,9 @@
 # Tutorial 2 - Controlling a robot arm
 
-This tutorial aims at showcasing some of the control capabilities of SAI, how to define controllers and how to interact with them. SAI controllers are designed for torque controlled robots, so the output of the controller will always be a vector of joint torques to apply to the robot. We will control a Franka Panda arm in simulation. Let us start with a simulation of the Panda arm. We provide a world file `2_robot_arm_world.urdf` and a xml config file `2_robot_arm.xml` in their respective folders. Note that we don't have a urdf file for the panda in the robot_files folder. This is because we already have a urdf file for the panda in the SaiModel repository, and we can access it from the config and world file. Look at the world file, it should look similar to the one in the first tutorial. We have the panda robot
+This tutorial aims at showcasing some of the control capabilities of OpenSai, how to define controllers and how to interact with them. OpenSai controllers are designed for torque controlled robots, so the output of the controller will always be a vector of joint torques to apply to the robot. We will control a Franka Panda arm in simulation. Let us start with a simulation of the Panda arm. We provide a world file `2_robot_arm_world.urdf` and a xml config file `2_robot_arm.xml` in their respective folders. Note that we don't have a urdf file for the panda in the robot_files folder. This is because we already have a urdf file for the panda in the SaiModel repository, and we can access it from the config and world file. Look at the world file, it should look similar to the one in the first tutorial. We have the panda robot
 ```
 <robot name="Panda">
-	<model dir="${SAI_MODEL_URDF_FOLDER}/panda" path="panda_arm_box.urdf" name="panda" />
+	<model dir="${OpenSai_MODEL_URDF_FOLDER}/panda" path="panda_arm_box.urdf" name="panda" />
 </robot>
 ```
 
@@ -11,7 +11,7 @@ And two static objects, a floor and a tilted table.
 
 Look at the provided xml config file:
 ```
-<redisConfiguration namespacePrefix="sai" />
+<redisConfiguration namespacePrefix="opensai" />
 
 <simvizConfiguration
 	worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/2_robot_arm_world.urdf">
@@ -20,7 +20,7 @@ Look at the provided xml config file:
 ```
 
 Two things to note:
-- In the world file, the path to the robot file contains `${SAI_MODEL_URDF_FOLDER}/`. This refers to the urdf model folder of the SAIModel repository and this syntax can be used in all urdf and xml files.
+- In the world file, the path to the robot file contains `${OpenSai_MODEL_URDF_FOLDER}/`. This refers to the urdf model folder of the OpenSaiModel repository and this syntax can be used in all urdf and xml files.
 - We added a logger tag to the simvizConfiguration to define a custom folder where to log the files instead of using the default one as in the first tutorial.
 
 Start the simulation for tutorial 2
@@ -44,7 +44,7 @@ Here is the `robotControlConfiguration` tag we need to add with its attributes:
 
 ```
 <robotControlConfiguration robotName="Panda"
-	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
+	robotModelFile="${OpenSai_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
 </robotControlConfiguration>
 ```
 
@@ -76,7 +76,7 @@ You have different options with this ui:
 - Enable/disable OTG (online trajectory generation to satisfy velocity, acceleration and jerk limits)
 - Start/stop logging data
 
-You can also switch to the simviz tab to interact with the simulation as in tutorial 1. Take some time to explore the ui, and for more information, you can look at the documentation part of the SAI repository.
+You can also switch to the simviz tab to interact with the simulation as in tutorial 1. Take some time to explore the ui, and for more information, you can look at the documentation part of the OpenSai repository.
 
 ## Cartesian controller
 
@@ -88,7 +88,7 @@ Let us add a second controller to our robot. Define a second controller just bef
 <summary>Solution</summary>
 ```
 <robotControlConfiguration robotName="Panda"
-	robotModelFile="${SAI_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
+	robotModelFile="${OpenSai_MODEL_URDF_FOLDER}/panda/panda_arm_box.urdf">
 
 	<controller name="cartesian_controller">
 		<motionForceTask name="motion_force_task"
@@ -134,8 +134,8 @@ class State(Enum):
 The python script will implement a state machine with two states: going left and going right
 
 ```
-goal_position_redis_key = "sai::controllers::Panda::cartesian_controller::motion_force_task::goal_position"
-current_position_redis_key = "sai::controllers::Panda::cartesian_controller::motion_force_task::current_position"
+goal_position_redis_key = "opensai::controllers::Panda::cartesian_controller::motion_force_task::goal_position"
+current_position_redis_key = "opensai::controllers::Panda::cartesian_controller::motion_force_task::current_position"
 ```
 The redis keys to read the current position of the robot and send the goal position
 
@@ -208,21 +208,21 @@ There is one important safety rule when using the real robot and trying new cont
 `Always assume something unexpected can happen`, and be happily surprised if everything goes as planned.
 When trying the robot driver, launching the controller, and sending new inputs to the controller for the first time, always pay attention and be ready to stop the robot with the E-Stop at any time.
 
-When using SAI with the real hardware, there are 4 main points to keep in mind:
+When using OpenSai with the real hardware, there are 4 main points to keep in mind:
 - Do not use a configuration file that enables a simulation for the controlled robots when using real hardware. Otherwise the simulated sensor data will interfere with the real robot sensor data. You have 2 options:
 	- Remove the `<simvizConfiguration>` form the config file
 	- Set the `<simvizConfiguration>` to vizOnly mode by adding the attribute `mode="vizOnly"` to the `<simvizConfiguration>` tag (only the visualizer will be enabled, no simulation, and the rendered robot will follow the real sensor data).
-- The robots often perform gravity compensation on their own. This is why SAI controllers don't perform gravity compensation by default, but you can change that by adding the attribute `gravityCompensation="true"` in each `<controller>` tag.
-- The urdf models often provide incorrect mass and inertia information, and the robot drivers/API may provide the mass matrix. This is why SAI controllers read the mass matrix published by the robot driver or simulation by default. If you want to change that and use the mass matrix computed using the urdf model, you can change that by adding the attribute `getMassMatrixFromRedis="false"` in the `<robotControlConfiguration>` tag.
+- The robots often perform gravity compensation on their own. This is why OpenSai controllers don't perform gravity compensation by default, but you can change that by adding the attribute `gravityCompensation="true"` in each `<controller>` tag.
+- The urdf models often provide incorrect mass and inertia information, and the robot drivers/API may provide the mass matrix. This is why OpenSai controllers read the mass matrix published by the robot driver or simulation by default. If you want to change that and use the mass matrix computed using the urdf model, you can change that by adding the attribute `getMassMatrixFromRedis="false"` in the `<robotControlConfiguration>` tag.
 - Make sure the redis keys are the same between the robot driver and sai controller, otherwise the communication between the two won't work.
 
-We recommend using the [Sai Franka Redis Driver](https://github.com/manips-sai/FrankaPanda) for use with SAI.
+We recommend using the [Sai Franka Redis Driver](https://github.com/manips-sai/FrankaPanda) for use with OpenSai.
 
 After installing the driver and once you are able to run it and put the robot in float mode, you can almost control the robot using the config file you made in this tutorial. Follow those steps:
 1. Remove the simvizConfiguration from the config file, or set it to vizOnly mode as explained before.
 2. Make sure the robot name in the `<controllerConfiguration>` tag is the same as the robot name in the driver config file
 3. Launch the driver
-4. Launch the controller from the SAI repository
+4. Launch the controller from the OpenSai repository
 ```
 sh scripts/tutorial_launch.sh 2
 ```
@@ -275,7 +275,7 @@ And notice how the cube aligns with the surface
 Try clicking on the Motion tab and change the y goal position of the robot. You will see it slide on the surface, maintaining the contact force and alignment.
 ![](images/2_robot_aligned_moved.png)
 
-There are more examples of controllers and python scripts in the SAI repository.
+There are more examples of controllers and python scripts in the OpenSai repository.
 
 ## Next tutorial
 [Controlling a robot arm with a haptic device](3_robot_arm_haptic.md)
