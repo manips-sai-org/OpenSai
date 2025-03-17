@@ -70,7 +70,7 @@ ${SAI-COMMON_LIBRARIES}
 )
 
 add_executable(OpenSai_main src/main.cpp)
-target_link_libraries(OpenSai_main ${SAI_LIBRARIES})
+target_link_libraries(OpenSai_main ${OpenSai_LIBRARIES})
 set( CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/config_folder )
 add_definitions(-DCONFIG_FOLDER_PATH="${CONFIG_FOLDER_PATH}")
 
