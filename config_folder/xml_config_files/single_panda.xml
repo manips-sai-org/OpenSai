@@ -1,4 +1,4 @@
-<redisConfiguration namespacePrefix="sai" />
+<redisConfiguration namespacePrefix="opensai" />
 
 <simvizConfiguration
 	worldFilePath="${WORLD_FILES_FOLDER}/world_single_panda.urdf">

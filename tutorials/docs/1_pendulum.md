@@ -1,12 +1,12 @@
 # Tutorial 1 - Simulation with pendulums
 
-This tutorial aims at showcasing the main features of SAI when defining a simulation world. All the tutorial files are present in the `tutorials` folder.
+This tutorial aims at showcasing the main features of OpenSai when defining a simulation world. All the tutorial files are present in the `tutorials` folder.
 
 A very basic and uncomplete simulation is provided. Following this tutorial, you will learn how to complete the roboti model, add things to the simulation and interact with it.
 
 ## Launching the simulation and understanding the config files
 
-First, launch the first tutorial. From the root folder of the SAI repository:
+First, launch the first tutorial. From the root folder of the OpenSai repository:
 
 ```
 sh scripts/tutorial_launch.sh 1
@@ -21,7 +21,7 @@ This represents a simple pendulum, hanging vertically, attached to the world on 
 
 Note that the gravity seems not to afect the pendulum. We will change this soon.
 
-In order to define a simulation in SAI, we need 3 types of files. We need a xml config file for the SAI simulation definition, we need a world file to define the virtual world, and we need a urdf file for each robot we want to simulate (in the current case, for the pendulum). Let's look at those files.
+In order to define a simulation in OpenSai, we need 3 types of files. We need a xml config file for the OpenSai simulation definition, we need a world file to define the virtual world, and we need a urdf file for each robot we want to simulate (in the current case, for the pendulum). Let's look at those files.
 
 * The urdf file for the pendulum is located in `tutorials/tuto_config_folder/robot_files/pendulum.urdf` and its contents are:
 
@@ -70,7 +70,7 @@ In order to define a simulation in SAI, we need 3 types of files. We need a xml 
 
 In order to define a robot model in the URDF format, we need to define links and joints. The kinematic structure of the robot is defined by the joints. Each joint has a type, a parent, a child, a position in its parent joint. For more information, look at the [ROS official URDF documentation](https://wiki.ros.org/urdf/XML/model)
 
-The links are used to define inertial properties, visual and collision elements. Inertial properties are mandatory in SAI, visual and collision elements are optional.
+The links are used to define inertial properties, visual and collision elements. Inertial properties are mandatory in OpenSai, visual and collision elements are optional.
 
 * The world file is `tutorials/tuto_config_folder/world_files/1_pendulum_world.urdf`. Its content is
 
@@ -104,10 +104,10 @@ The links are used to define inertial properties, visual and collision elements.
 
 The world file contains robot models, objects (there are no objects presents in this example yet), lights and cameras to render the world. Note that it also defined the world gravity. we will see a little later why it does not affect the pendulum.
 
-* The SAI configuration file is `tutorials/tuto_config_folder/xml_files/1_pendulum.xml`. For now, it is very simple:
+* The OpenSai configuration file is `tutorials/tuto_config_folder/xml_files/1_pendulum.xml`. For now, it is very simple:
 
 ```
-<redisConfiguration namespacePrefix="sai" />
+<redisConfiguration namespacePrefix="opensai" />
 
 <simvizConfiguration worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/1_pendulum_world.urdf">
 </simvizConfiguration>
@@ -143,7 +143,7 @@ You can draw inspiration from the visual element for the sphere in the base_link
 
 #### 2 - Add a link connected via a fixed joint to link1
 
-This is the preffered way of doing in case the added visual also has a corresponding collision element because SAI does not suppoer multiple collision elements on the same link.
+This is the preffered way of doing in case the added visual also has a corresponding collision element because OpenSai does not suppoer multiple collision elements on the same link.
 
 <details>
 <summary>Hint</summary>
@@ -229,7 +229,7 @@ Start the simulation, it should now look like
 ## Make gravity act on the pendulum
 As mentioned before, the world file defines the world gravity, set to -9.81 in the vertical direction here. However it does not affect the pendulum. This is because the simulation implements gravity compensation for the robot models by default. The reason for that is that when using an actual robot arm, gravity compensation is in general already habdled internally by the robot, and the controller we implement should therefore not perform gravity compensation. So we want our controller in simulation not to have to do gravity compensation either.
 
-In order to let the simulation know that we don't want it to do the robot gravity compensation, we will need to modify the SAI config file `tuto_config_folder/xml_files/1_pendulum.xml`. and add the following inside the `simvizConfiguration` tag:
+In order to let the simulation know that we don't want it to do the robot gravity compensation, we will need to modify the OpenSai config file `tuto_config_folder/xml_files/1_pendulum.xml`. and add the following inside the `simvizConfiguration` tag:
 ```
 <simParameters enableGravityCompensation="false" />
 ```
@@ -440,7 +440,7 @@ Notice how the camera placement does not allow to see the full pendulum. Let's c
 ![](images/1_double_pendulum_new_cam.png)
 
 ## Add an initial joint configuration
-SAI provides the ability to define initial joint configurations from the urdf file directy by using the `callibration` tag of urdf joints (which is not intended for that purpose when using an irdf file with systems other that SAI).
+OpenSai provides the ability to define initial joint configurations from the urdf file directy by using the `callibration` tag of urdf joints (which is not intended for that purpose when using an irdf file with systems other that OpenSai).
 You can give a value in radians using the rising attribute, or in degrees using the falling attribute. For prismatic joints, thr rising or falling field can be used and the value is in meters.
 
 For example, add this to the first revolute joint `<calibration rising="0.5" />` and this to the second `<calibration falling="35.0" />` and the double pendulum will now start in the following configuration when starting the simulation
@@ -532,7 +532,7 @@ You will notice that the box goes through the pendulum. This is because there ar
 
 ## Using the webui
 
-Open a web browser and navigate to localhost:8000. If you see a message saying unable to connect, you may have to start the webui manually from the root SAI folder:
+Open a web browser and navigate to localhost:8000. If you see a message saying unable to connect, you may have to start the webui manually from the root OpenSai folder:
 
 ```
 python bin/ui/server.py tutorials/tuto_config_folder/xml_files/webui_generated_file/webui.html
@@ -541,7 +541,7 @@ python bin/ui/server.py tutorials/tuto_config_folder/xml_files/webui_generated_f
 You should see the following:
 ![](images/1_webui.png)
 
-You can explore the different exposed simulation parameters for the pendulum and the box. The details are explained in the SAI documentation.
+You can explore the different exposed simulation parameters for the pendulum and the box. The details are explained in the OpenSai documentation.
 
 ## Plotting the joint angles in real time
 

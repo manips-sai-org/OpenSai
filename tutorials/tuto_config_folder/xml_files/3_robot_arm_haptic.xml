@@ -1,4 +1,4 @@
-<redisConfiguration namespacePrefix="sai" />
+<redisConfiguration namespacePrefix="opensai" />
 
 <simvizConfiguration
 	worldFilePath="${TUTORIALS_WORLD_FILES_FOLDER}/2_robot_arm_world.urdf">

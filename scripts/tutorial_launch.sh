@@ -31,14 +31,14 @@ fi
 sleep 0.2
 
 # launch sai main program
-./bin/Tutorials_SAI "$config_file" &
-SAI_MAIN_PID=$!
+./bin/Tutorials_OpenSai "$config_file" &
+OpenSai_MAIN_PID=$!
 
 # trap ctrl-c and call ctrl_c()
 trap ctrl_c INT
 
 function ctrl_c() {
-    kill -2 $SAI_MAIN_PID
+    kill -2 $OpenSai_MAIN_PID
 }
 
 sleep 1
@@ -46,13 +46,13 @@ sleep 1
 # Launch interfaces server using tmux
 tmux new-session -d -s interfaces_server "python3 bin/ui/server.py tutorials/tuto_config_folder/xml_files/webui_generated_file/webui.html"
 
-# Wait for SAI main program to quit and stop redis
-wait $SAI_MAIN_PID
+# Wait for OpenSai main program to quit and stop redis
+wait $OpenSai_MAIN_PID
 if [ ! -z "$REDIS_PID" ]; then
 	kill -2 $REDIS_PID
 fi
 
-# Once SAI main program dies, kill interfaces server
+# Once OpenSai main program dies, kill interfaces server
 tmux send-keys -t interfaces_server C-c
 
 # Close the tmux session

@@ -2,7 +2,7 @@
 
 In this tutorial, we add a haptic controller for controlling the robot end effector. You will need access to a haptic device compatible with chai3d for this tutorial.
 
-First, install and test the [chai3d SAI haptic device driver](https://github.com/manips-sai-org/chaiHapticdeviceRedisDriver)
+First, install and test the [chai3d OpenSai haptic device driver](https://github.com/manips-sai-org/chaiHapticdeviceRedisDriver)
 
 Once the driver is working, you can take a look at the xml configuration file for the third tutorial called `3_robot_arm_haptic.xml`. There is a new tag in the file to define the haptic controller:
 
@@ -62,4 +62,4 @@ Add the following line inside the `hapticDeviceControlConfiguration` tag:
 
 Start the tutorial program, enable teleoperation by pressing the haptic device switch and you should that both the haptic device and robot are constrained to moving in the horizontal plane.
 
-For more information about all the parametrizable elements in the haptic controllers, look at the SAI documentation.
+For more information about all the parametrizable elements in the haptic controllers, look at the OpenSai documentation.

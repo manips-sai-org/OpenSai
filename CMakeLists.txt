@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(SAI)
+project(OpenSai)
 set(PROJECT_VERSION 0.1.0)
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -I/usr/include -I/usr/local/include -fPIC")
@@ -58,7 +58,7 @@ include_directories(${SAI-INTERFACES_INCLUDE_DIRS})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
-set(SAI_LIBRARIES
+set(OpenSai_LIBRARIES
 ${SAI-GRAPHICS_LIBRARIES}
 ${SAI-URDF_LIBRARIES}
 ${CHAI3D_LIBRARIES}
@@ -69,13 +69,13 @@ ${SAI-SIMULATION_LIBRARIES}
 ${SAI-COMMON_LIBRARIES}
 )
 
-add_executable(SAI_main src/main.cpp)
-target_link_libraries(SAI_main ${SAI_LIBRARIES})
+add_executable(OpenSai_main src/main.cpp)
+target_link_libraries(OpenSai_main ${SAI_LIBRARIES})
 set( CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/config_folder )
 add_definitions(-DCONFIG_FOLDER_PATH="${CONFIG_FOLDER_PATH}")
 
-add_executable(Tutorials_SAI tutorials/main_tutorials.cpp)
-target_link_libraries(Tutorials_SAI ${SAI_LIBRARIES})
+add_executable(Tutorials_OpenSai tutorials/main_tutorials.cpp)
+target_link_libraries(Tutorials_OpenSai ${OpenSai_LIBRARIES})
 set( TUTORIALS_CONFIG_FOLDER_PATH ${PROJECT_SOURCE_DIR}/tutorials/tuto_config_folder )
 add_definitions(-DTUTORIALS_CONFIG_FOLDER_PATH="${TUTORIALS_CONFIG_FOLDER_PATH}")
 

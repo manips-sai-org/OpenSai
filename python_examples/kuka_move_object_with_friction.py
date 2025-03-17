@@ -18,16 +18,16 @@ class State(Enum):
 
 @dataclass
 class RedisKeys:
-    kuka_goal_position: str = "sai::controllers::Kuka::eef_control::eef_task::goal_position"
-    kuka_goal_orientation: str = "sai::controllers::Kuka::eef_control::eef_task::goal_orientation"
-    kuka_current_position: str = "sai::controllers::Kuka::eef_control::eef_task::current_position"
-    kuka_current_orientation: str = "sai::controllers::Kuka::eef_control::eef_task::current_orientation"
-    kuka_sensed_force: str = "sai::controllers::Kuka::eef_control::eef_task::sensed_force"
-    kuka_desired_force: str = "sai::controllers::Kuka::eef_control::eef_task::desired_force"
-    kuka_force_space_dimension: str = "sai::controllers::Kuka::eef_control::eef_task::force_space_dimension"
-    kuka_force_space_axis: str = "sai::controllers::Kuka::eef_control::eef_task::force_space_axis"
+    kuka_goal_position: str = "opensai::controllers::Kuka::eef_control::eef_task::goal_position"
+    kuka_goal_orientation: str = "opensai::controllers::Kuka::eef_control::eef_task::goal_orientation"
+    kuka_current_position: str = "opensai::controllers::Kuka::eef_control::eef_task::current_position"
+    kuka_current_orientation: str = "opensai::controllers::Kuka::eef_control::eef_task::current_orientation"
+    kuka_sensed_force: str = "opensai::controllers::Kuka::eef_control::eef_task::sensed_force"
+    kuka_desired_force: str = "opensai::controllers::Kuka::eef_control::eef_task::desired_force"
+    kuka_force_space_dimension: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_dimension"
+    kuka_force_space_axis: str = "opensai::controllers::Kuka::eef_control::eef_task::force_space_axis"
     config_file_name: str = "::sai-interfaces-webui::config_file_name"
-    object_pose = "sai::sensors::Object::object_pose"
+    object_pose = "opensai::sensors::Object::object_pose"
 
 redis_keys = RedisKeys()
 
