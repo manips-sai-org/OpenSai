@@ -13,7 +13,7 @@ services:
     image: stanfordroboticscenter/sai
     build:
       context: ./
-      dockerfile: docker/Dockerfile.sai
+      dockerfile: docker/Dockerfile.opensai
     network_mode: host
     command: redis-server
 
@@ -21,7 +21,7 @@ services:
     image: stanfordroboticscenter/sai
     build:
       context: ./
-      dockerfile: docker/Dockerfile.sai
+      dockerfile: docker/Dockerfile.opensai
     environment:
         - DISPLAY
         - QT_X11_NO_MITSHM=1
